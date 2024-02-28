@@ -1,7 +1,13 @@
 .devise-card {
-    background-color: #ffffff;
+    background-color: $caramel-grey;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 4px rgba(0, 0, 0.2, 0.2);
     padding: 20px;
     width: 50%;
+}
+
+.title {
+    font-family: $header-font;
+    font-size: 50px;
+    color: $dark-green;
 }
