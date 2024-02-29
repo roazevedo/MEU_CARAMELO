@@ -1,23 +1,22 @@
-require 'csv'
-class AdoptionformsController < ApplicationController
+class AdoptionFormsController < ApplicationController
+
+  def index
+    @adoption_forms = AdoptionForm.all
+  end
+
 
   def show
     @adoption_form = AdoptionForm.find(params[:id])
   end
 
+
   def new
     @adoption_form = AdoptionForm.new
-    @questions_and_answers = CSV.read(Rails.root.join('db','perguntas.csv'), liberal_parsing: true).map { |q, a| [q, a.split(';')] }.to_h
-    end
+  end
 
   def create
     @adoption_form = AdoptionForm.new(adoption_form_params)
     @adoption_form.user = current_user
-    answers = {}
-    @questions_and_answers.keys.each do |question|
-      answers[question] = params[question]
-    end
-    @adoption_form.query = answers
     if @adoption_form.save
       redirect_to @adoption_form
     else
@@ -25,10 +24,6 @@ class AdoptionformsController < ApplicationController
       @errors = @adoption_form.errors.full_messages
       render 'new'
     end
-  end
-
-  def show
-    @adoption_form = AdoptionForm.find(params[:id])
   end
 
   def edit
@@ -49,6 +44,7 @@ class AdoptionformsController < ApplicationController
   private
 
   def adoption_form_params
-    params.require(:adoption_form).permit(:query, :user_id)
+    params.require(:adoption_form).permit(:query, :user_id, :pergunta1, :pergunta2, :pergunta3, :pergunta4, :pergunta5,
+    :pergunta6, :pergunta7, :pergunta8)
   end
 end

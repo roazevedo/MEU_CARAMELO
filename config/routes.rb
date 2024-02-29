@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
 
-  post "adoptionforms", to: "adoptionforms#create"
-  get "adoptionforms/new", to: "adoptionforms#new", as: :new_adoptionform
-  get "adoptionforms/:id", to: "adoptionforms#show", as: :adoptionform
-  get "adoptionforms/:id/edit", to: "adoptionforms#edit", as: :edit_adoptionform
-  patch "adoptionforms/:id", to: "adoptionforms#update"
+ resources :adoption_forms, only: [:index, :show, :new, :create, :edit, :update]
+
+  # get "adoptionforms/:id", to: "adoptionforms#show", as: :adoptionform
+  # get "adoptionforms/new", to: "adoptionforms#new", as: :new_adoptionform
+  # post "adoptionforms", to: "adoptionforms#create"
+  # get "adoptionforms/:id/edit", to: "adoptionforms#edit"
+  # patch "adoptionforms/:id", to: "adoptionforms#update"
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

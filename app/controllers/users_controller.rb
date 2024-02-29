@@ -21,6 +21,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def find_matches(user)
+    user_adopter = user.adopter.pluck(:name)
+    matches = User.joins(:adopter).where(adopter: {name: user_adopter})
+
+    scored_matches = matches.map do |match|
+      shared_adopter = match.adopter.pluck(:name) & user_adopter
+      {match: match, score: shared_adopter}
+    end
+
+    scored_matches.sort_by! { |match| -match[:score] }
+  end
+
+
   def edit
     @user = User.find(params[:id])
   end
@@ -29,8 +42,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @adoption_form = AdoptionForm.find_by(user_id:current_user.id)
     if @user.update(user_params)
-      #if @adoption_form.blank?
-        #redirect_to new_adoptionform_path
+     # if @adoption_form.blank?
+        redirect_to new_adoption_form_path
      # end
     else
       flash.now[:alert] = 'There was a problem updating the User.'
