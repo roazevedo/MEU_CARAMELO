@@ -1,0 +1,15 @@
+<% if user_signed_in? && current_user.adopter? %>
+  <div>
+    <p><%= link_to "Home", "/", class: "nav-link" %> / Dashboard</p>
+  </div>
+  <h2><%= link_to "Meu Perfil", "/", class: "nav-link" %></h2>
+  <h2><%= link_to "Minhas adoções", "#", class: "nav-link" %></h2>
+  <h2><%= link_to "Meus favoritos",user_animals_path(current_user), class: "nav-link" %></h2>
+<% else %>
+  <div>
+    <p><%= link_to "Home", "/", class: "nav-link" %> / Dashboard</p>
+  </div>
+  <h2><%= link_to "Meu Perfil", "/", class: "nav-link" %></h2>
+  <h2><%= link_to "Aplicações para adoção", "#", class: "nav-link" %></h2>
+  <h2><%= link_to "Meus animais", user_animals_path(current_user), class: "nav-link" %></h2>
+<% end %>

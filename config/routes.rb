@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get "users/:id", to: "users#show", as: :user
   get "users/:id/edit", to: "users#edit", as: :edit_user
   patch "users/:id", to: "users#update"
+
   root to: "pages#home"
+  get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
 
  resources :adoption_forms, only: [:index, :show, :new, :create, :edit, :update]
 
