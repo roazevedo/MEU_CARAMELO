@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MeuCaramelo</title>
+    <title>Meu Caramelo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,10 +10,15 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+
+    <div class="page-container">
+      <div id="content-wrap">
+        <%= render "shared/navbar" %>
+        <%= yield %>
+      </div>
+      <%= render "shared/footer" %>
+    </div>
+
     <%= render "shared/flashes" %>
-
-    <%= yield %>
-
   </body>
 </html>

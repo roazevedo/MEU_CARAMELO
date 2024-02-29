@@ -11,7 +11,7 @@
         <%= f.input :password, label: "Senha",
                     required: false,
                     input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, label: "Lembrar", as: :boolean if devise_mapping.rememberable? %>
+        <%= f.input :remember_me, label: "Lembrar de mim", as: :boolean if devise_mapping.rememberable? %>
       </div>
 
       <div class="form-actions">
