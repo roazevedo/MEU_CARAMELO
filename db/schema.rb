@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_24_174014) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_28_001732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_174014) do
     t.string "pergunta6"
     t.string "pergunta7"
     t.string "pergunta8"
-    t.index ["user_id"], name: "index_adoptionforms_on_user_id"
+    t.index ["user_id"], name: "index_adoption_forms_on_user_id"
   end
 
   create_table "adoptions", force: :cascade do |t|
