@@ -19,7 +19,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_174014) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_adoption_forms_on_user_id"
+    t.string "pergunta1"
+    t.string "pregunta2"
+    t.string "pergunta3"
+    t.string "pergunta4"
+    t.string "pergunta5"
+    t.string "pergunta6"
+    t.string "pergunta7"
+    t.string "pergunta8"
+    t.index ["user_id"], name: "index_adoptionforms_on_user_id"
   end
 
   create_table "adoptions", force: :cascade do |t|
