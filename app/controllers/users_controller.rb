@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       # If the user isn't saved successfully, re-render the form so the user can fix the problems
-      flash.now[:alert] = 'There was a problem creating the User.'
+      flash.now[:alert] = 'Tivemos um problema ao criar o usuário.'
       @errors = @user.errors.full_messages
       render 'new'
     end
@@ -42,11 +42,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @adoption_form = AdoptionForm.find_by(user_id:current_user.id)
     if @user.update(user_params)
-     # if @adoption_form.blank?
+      if @adoption_form.blank? && @user.adopter == true
         redirect_to new_adoption_form_path
-     # end
+      end
     else
-      flash.now[:alert] = 'There was a problem updating the User.'
+      flash.now[:alert] = 'Tivemos um problema ao editar o usuário.'
       @errors = @user.errors.full_messages
       render 'edit'
     end

@@ -1,13 +1,19 @@
-<h2><%= @animal.name %></h2>
-<h1><%= @animal.specie %></h1>
-<p><%= @animal.age %></p>
-<p><%= @animal.size %></p>
-<p><%= @animal.gender %></p>
-<p><%= @animal.vaccination %></p>
-<p><%= @animal.neutered %></p>
-<p><%= @animal.story %></p>
-<p><%= @animal.city %></p>
-<p><%= @animal.state %></p>
+<div class="container">
+  <!-- código a ser executado se o usuário tiver um animal -->
+  <h2><%= @animal.name %></h2>
+  <h1><%= @animal.specie %></h1>
+  <p><%= @animal.age %></p>
+  <p><%= @animal.size %></p>
+  <p><%= @animal.gender %></p>
+  <p><%= @animal.vaccination %></p>
+  <p><%= @animal.neutered %></p>
+  <p><%= @animal.story %></p>
+  <p><%= @animal.city %></p>
+  <p><%= @animal.state %></p>
+  <!-- fazer botão para todos os 'matches' (index animals) -->
+  <%= link_to 'Voltar', animals_path, class: 'btn btn-dark-green' %>
+  <%= link_to 'Editar', edit_animal_path, class: 'btn btn-yellow' %>
 
-<!-- fazer botão para todos os 'matches' (index animals) -->
-<%= link_to 'Voltar', animal_path(@animal), class: 'btn btn-primary' %>
+  <!-- app/views/animals/show.html.erb -->
+  <%= link_to "Delete", animal_path(@animal), data: {turbo_method: :delete, turbo_confirm: "Você tem certeza?"}, class:"btn btn-red" %>
+</div>
