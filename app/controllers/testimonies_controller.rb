@@ -7,7 +7,7 @@ class TestimoniesController < ApplicationController
 
   def new
     @adoption = Adoption.find(params[:adoption_id])
-    @review = Review.new
+    @testimony = Testimony.new
   end
 
   def create
