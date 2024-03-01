@@ -33,7 +33,6 @@ class UsersController < ApplicationController
     scored_matches.sort_by! { |match| -match[:score] }
   end
 
-
   def edit
     @user = User.find(params[:id])
   end
