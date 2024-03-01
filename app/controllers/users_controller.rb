@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @adoption_form = AdoptionForm.find_by(user_id:current_user.id)
+    @adoption_form = AdoptionForm.find_by(user_id: current_user.id)
     if @user.update(user_params)
       if @adoption_form.blank? && @user.adopter == true
         redirect_to new_adoption_form_path
