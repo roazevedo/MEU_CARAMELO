@@ -1,15 +1,32 @@
 <div class="container">
   <!-- código a ser executado se o usuário tiver um animal -->
-  <h2><%= @animal.name %></h2>
-  <h1><%= @animal.specie %></h1>
-  <p><%= @animal.age %></p>
-  <p><%= @animal.size %></p>
-  <p><%= @animal.gender %></p>
-  <p><%= @animal.vaccination %></p>
-  <p><%= @animal.neutered %></p>
-  <p><%= @animal.story %></p>
-  <p><%= @animal.city %></p>
-  <p><%= @animal.state %></p>
+  <h1><%= @animal.name %></h1>
+  <h3><%= @animal.specie %></h3>
+  <p>Tenho <%= @animal.age %> anos </p>
+  <p>Sou da cidade de <%= @animal.city %> / <%= @animal.state %></p>
+  <p>Tenho um porte <%= @animal.size %></p>
+  <p>Sou <%= @animal.gender %></p>
+  <% if @animal.vaccination && @animal.gender == 'Macho' %>
+    <p>Vacinado</p>
+    <% elsif @animal.vaccination == false && @animal.gender == 'Macho' %>
+    <p>Não vacinado</p>
+    <% elsif @animal.vaccination && @animal.gender == 'Fêmea' %>
+    <p>Vacinada</p>
+    <% elsif @animal.vaccination == false && @animal.gender == 'Fêmea' %>
+    <p>Não vacinada</p>
+  <% end %>
+  <% if @animal.neutered && @animal.gender == 'Macho' %>
+    <p>Castrado</p>
+    <% elsif @animal.neutered == false && @animal.gender == 'Macho' %>
+    <p>Não castrado</p>
+    <% elsif @animal.neutered && @animal.gender == 'Fêmea' %>
+    <p>Castrada</p>
+    <% elsif @animal.neutered == false && @animal.gender == 'Fêmea' %>
+    <p>Não castrada</p>
+  <% end %>
+  <h3>Conheça a minha história</h3>
+  <h4>"<%= @animal.story %>"</h4>
+
   <!-- fazer botão para todos os 'matches' (index animals) -->
   <%= link_to 'Voltar', animals_path, class: 'btn btn-dark-green' %>
   <%= link_to 'Editar', edit_animal_path, class: 'btn btn-yellow' %>

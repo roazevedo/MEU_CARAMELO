@@ -1,5 +1,4 @@
 <div class="container">
-  <h3>Meus animais</h3>
   <div class="row">
     <% @animals.each do |animal| %>
       <% if current_user.id == animal.user.id %>
@@ -23,5 +22,3 @@
   </div>
   <%= link_to "Adicionar animal", new_user_animal_path(current_user), class: "nav-link btn btn-dark-green" %>
 </div>
-
-  <%= link_to "Voltar", root_path, class: "nav-link btn btn-dark-yellow" %>

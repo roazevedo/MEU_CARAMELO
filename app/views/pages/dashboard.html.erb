@@ -1,15 +1,140 @@
 <% if user_signed_in? && current_user.adopter? %>
-  <div>
-    <p><%= link_to "Home", "/", class: "nav-link" %> / Dashboard</p>
-  </div>
-  <h2><%= link_to "Meu Perfil", "/", class: "nav-link" %></h2>
-  <h2><%= link_to "Minhas adoções", "#", class: "nav-link" %></h2>
-  <h2><%= link_to "Meus favoritos",user_animals_path(current_user), class: "nav-link" %></h2>
+  <div class="container">
+  <div data-controller="show-dashboard">
+    <div class="row mx-auto">
+
+      <div class="col-sm dashboard-card">
+        <button class="dashboard-button" id="profile-btn" data-action="click->show-dashboard#profile">
+          <div class="card-info">
+            <h5>Profile</h5>
+            <p class="description">Edite suas informações pessoais</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="col-sm dashboard-card">
+        <button class="dashboard-button" id="adoption-btn" data-action="click->show-dashboard#adoptions">
+          <div class="card-info">
+            <h5>Minhas adoções</h5>
+            <p class="description">Veja os animais que deseja adotar</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="col-sm dashboard-card">
+        <button class="dashboard-button" id="animal-btn" data-action="click->show-dashboard#animals">
+          <div class="card-info">
+            <h5>Meus animais favoritos</h5>
+            <p class="description">Veja os seus animais favoritos</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row mx-auto">
+
+        <div class="col-sm">
+
+          <div data-show-dashboard-target="profileElement" class="mt-5 d-none">
+            <%= simple_form_for @user do |f| %>
+              <%= f.input :first_name, required: true %>
+              <%= f.input :last_name, required: true %>
+              <%= f.input :city, required: true %>
+              <%= f.input :state, required: true %>
+              <%= f.input :phone, required: true %>
+
+              <%= f.button :submit, "Update", class:"btn-yellow" %>
+            <% end %>
+          </div>
+
+          <div data-show-dashboard-target="adoptionElement" class="my-5 d-none">
+           <%= link_to "Minhas adoções", "#", class: "btn-yellow mb-1"%>
+            <% if @adoptions %>
+              <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+            <% else %>
+              <h3>Você não tem nenhuma adoção.</h3>
+            <% end %>
+          </div>
+
+          <div data-show-dashboard-target="animalElement" class="my-5 d-none">
+            <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 <% else %>
-  <div>
-    <p><%= link_to "Home", "/", class: "nav-link" %> / Dashboard</p>
+    <div class="container">
+    <div data-controller="show-dashboard">
+      <div class="row mx-auto">
+
+        <div class="col-sm dashboard-card">
+          <button class="dashboard-button" id="profile-btn" data-action="click->show-dashboard#profile">
+            <div class="card-info">
+              <h5>Profile</h5>
+              <p class="description">Edite suas informações pessoais</p>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-sm dashboard-card">
+          <button class="dashboard-button" id="adoption-btn" data-action="click->show-dashboard#adoptions">
+            <div class="card-info">
+              <h5>Interessados em adotar</h5>
+              <p class="description">Veja os animais que possuem interessados</p>
+            </div>
+          </button>
+        </div>
+
+        <div class="col-sm dashboard-card">
+          <button class="dashboard-button" id="animal-btn" data-action="click->show-dashboard#animals">
+            <div class="card-info">
+              <h5>Meus animais cadastrados</h5>
+              <p class="description">Veja os animais cadastrados</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row mx-auto">
+
+          <div class="col-sm">
+
+            <div data-show-dashboard-target="profileElement" class="mt-5 d-none">
+              <%= simple_form_for @user do |f| %>
+                <%= f.input :first_name, required: true %>
+                <%= f.input :last_name, required: true %>
+                <%= f.input :city, required: true %>
+                <%= f.input :state, required: true %>
+                <%= f.input :phone, required: true %>
+
+                <%= f.button :submit, "Update", class:"btn-yellow" %>
+              <% end %>
+            </div>
+
+            <div data-show-dashboard-target="adoptionElement" class="my-5 d-none">
+              <%= link_to "Interessados em adotar", "#", class: "btn-yellow mb-1"%>
+                <% if @adoptions %>
+                  <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+                <% else %>
+                  <h3>Não há nenhum interessado em seus animais.</h3>
+                <% end %>
+            </div>
+
+            <div data-show-dashboard-target="animalElement" class="my-5 d-none">
+              <% if @animals %>
+                <%= render 'animals/my_animals' %>
+              <% else %>
+                <h3>Não há nenhum animal cadastrado.</h3>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h2><%= link_to "Meu Perfil", "/", class: "nav-link" %></h2>
-  <h2><%= link_to "Aplicações para adoção", "#", class: "nav-link" %></h2>
-  <h2><%= link_to "Meus animais", user_animals_path(current_user), class: "nav-link" %></h2>
 <% end %>
