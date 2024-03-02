@@ -24,9 +24,9 @@
     <%= f.input :pergunta6, label: "Quantas pessoas morando na residência? "%>
     <%= f.input :pergunta7, label: "Ele ficará preso em algum cômodo ou terá acesso livre a todos os lugares?", collection: ['Sim', 'Não'] %>
     <%= f.input :pergunta8, label: "Você aceita manter contato com a gente e mandar fotos e vídeos constantemente?", collection: ['Sim', 'Não'] %>
-     <%= f.button :submit, class:"btn-orange" %>
+    <%= f.submit "Concluir", class: "btn-orange" %>
   <% end %>
-
+  <%= link_to 'Voltar', user_path(current_user), class: 'btn btn-dark-green' %>
    </div>
   </div>
   </div>

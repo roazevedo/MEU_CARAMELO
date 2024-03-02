@@ -27,10 +27,11 @@
   <h3>Conheça a minha história</h3>
   <h4>"<%= @animal.story %>"</h4>
 
-  <!-- fazer botão para todos os 'matches' (index animals) -->
-  <%= link_to 'Voltar', animals_path, class: 'btn btn-dark-green' %>
-  <%= link_to 'Editar', edit_animal_path, class: 'btn btn-yellow' %>
-
-  <!-- app/views/animals/show.html.erb -->
-  <%= link_to "Delete", animal_path(@animal), data: {turbo_method: :delete, turbo_confirm: "Você tem certeza?"}, class:"btn btn-red" %>
+  <% if current_user.adopter? %>
+    <%= link_to 'Voltar', user_path(current_user), class: 'btn btn-dark-green' %>
+  <% else %>
+    <%= link_to 'Editar', edit_animal_path, class: 'btn btn-yellow' %>
+    <%= link_to "Delete", animal_path(@animal), data: {turbo_method: :delete, turbo_confirm: "Você tem certeza?"}, class:"btn btn-red" %>
+    <%= link_to 'Voltar', animals_path, class: 'btn btn-dark-green' %>
+  <% end %>
 </div>

@@ -1,5 +1,5 @@
-<% if user_signed_in? && current_user.adopter? %>
-  <div class="container">
+<div class="container">
+  <% if user_signed_in? && current_user.adopter? %>
   <div data-controller="show-dashboard">
     <div class="row mx-auto">
 
@@ -137,4 +137,5 @@
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,17 +1,23 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 
-<p>Email: <%= @user.email %></p>
-<p>City: <%= @user.city %></p>
-<p>State: <%= @user.state %></p>
-<p>Phone: <%= @user.phone %></p>
+<%= link_to "Atualizar perfil", edit_user_path(current_user), class: "btn btn-primary" %>
+<%= link_to "Atualizar formulário de adoção", new_adoption_form_path, class: "btn btn-primary" %>
+<!-- <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %> |
+<%= link_to 'Back', users_path, class:"btn btn-dark-green" %> -->
 
-<%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %> |
-<%= link_to 'Back', users_path, class:"btn btn-dark-green" %>
-
-
+<h3>Veja abaixo os animais que possuem o perfil mais compatível com o seu:</h3>
 <% @matches.each do |match| %>
-  <div>
-    <h2><%= match[:animal].name %></h2>
-    <p>Pontuação de correspondência: <%= match[:score] %></p>
-  </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <h2><%= match[:animal].name %></h2>
+        <p><%= match[:animal].specie %></p>
+        <p><%= match[:animal].age %> anos</p>
+        <p><%= match[:animal].city %> / <%= match[:animal].state %></p>
+        <p>Esse animal é <%= match[:score] %>0% parecido com você</p>
+          <div style="display: flex; justify-content: space-between;">
+            <%= link_to "Mais informações", animal_path(match[:animal]), class: 'btn btn-yellow' %> <!-- falta colocar o link -->
+            <%= link_to "Quero adotar", "#", class: 'btn btn-success' %> <!-- falta colocar o link -->
+          </div>
+      </div>
+    </div>
 <% end %>

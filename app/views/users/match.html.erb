@@ -1,6 +1,15 @@
 <% @matches.each do |match| %>
-  <div>
-    <h2><%= match[:animal].name %></h2>
-    <p>Pontuação de correspondência: <%= match[:score] %></p>
-  </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <h2><%= match[:animal].name %></h2>
+        <p><%= match[:animal].specie %></p>
+        <p><%= match[:animal].age %> anos</p>
+        <p><%= match[:animal].city %> / <%= match[:animal].state %></p>
+        <p>Pontuação de correspondência: <%= match[:score] %></p>
+          <div style="display: flex; justify-content: space-between;">
+            <%= link_to "Mais informações", "#", class: 'btn btn-yellow' %> <!-- falta colocar o link -->
+            <%= link_to "Quero adotar", "#", class: 'btn btn-success' %> <!-- falta colocar o link -->
+          </div>
+      </div>
+    </div>
 <% end %>
