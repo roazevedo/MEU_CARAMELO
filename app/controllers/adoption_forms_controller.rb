@@ -9,6 +9,7 @@ class AdoptionFormsController < ApplicationController
     @adoption_form = AdoptionForm.find(params[:id])
   end
 
+
   def new
     @adoption_form = AdoptionForm.new
   end
