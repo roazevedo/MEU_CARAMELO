@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-
-  devise_for :users, controllers: { registrations: 'registrations' }
-
-  # devise_for :users
-  # post "users", to: "users#create"
-  # get "users/:id", to: "users#show", as: :user
-  # get "users/:id/edit", to: "users#edit", as: :edit_user
-  # patch "users/:id", to: "users#update"
+  devise_for :users
+  post "users", to: "users#create"
+  get "users/:id", to: "users#show", as: :user
+  get "users/:id/edit", to: "users#edit", as: :edit_user
+  patch "users/:id", to: "users#update"
 
   root to: "pages#home"
   get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
