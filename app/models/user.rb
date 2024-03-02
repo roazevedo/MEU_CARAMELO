@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :animals
-  has_one :adoption_forms
+  has_one :adoption_form
   has_many :adoptions
 end
