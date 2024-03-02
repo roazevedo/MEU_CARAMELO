@@ -7,11 +7,14 @@
 // To use a font file (.woff) uncomment following lines
 @font-face {
     font-family: "LuckyBones";
-    src: font-url('app/assets/fonts/lucky_bones/Luckybones-Bold.ttf');
-    src: font-url('Luckybones-Bold.eot?#iefix') format('embedded-opentype'), font-url('Luckybones-Bold.woff') format('woff'), font-url('Luckybones-Bold.ttf') format('truetype')
+    src: url(asset-path('lucky_bones/Luckybones-Bold.eot'));
+    src: url(asset-path('lucky_bones/Luckybones-Bold.eot?#iefix')) format('embedded-opentype'), url(asset-path('lucky_bones/Luckybones-Bold.woff')) format('woff'), url(asset-path('lucky_bones/Luckybones-Bold.ttf')) format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
-$my-font: "LuckyBones";
+$my-font: 'LuckyBones',
+sans-serif;
 $header-font: $my-font;
 $base-font: "Poppins",
 sans-serif;
