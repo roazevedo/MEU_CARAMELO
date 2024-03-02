@@ -1,0 +1,6 @@
+<% @matches.each do |match| %>
+  <div>
+    <h2><%= match[:animal].name %></h2>
+    <p>Pontuação de correspondência: <%= match[:score] %></p>
+  </div>
+<% end %>
