@@ -106,3 +106,23 @@
         }
     }
 }
+
+.my-icons {
+    .edit {
+        color: #ffc800;
+         :hover {
+            color: #f3be00;
+        }
+    }
+    .delete {
+        color: $red;
+         :hover {
+            color: rgb(238, 5, 5);
+        }
+    }
+}
+
+.add-animal {
+    width: 170px;
+    margin-left: 25px;
+}
