@@ -1,18 +1,20 @@
+require 'csv'
 class AnimalsController < ApplicationController
   def index
-    if current_user && current_user.adopter?
-      @animals = Animal.all
-    else
-      redirect_to new_animal_path
-    end
+
+    # if current_user && current_user.adopter?
+    @animals = Animal.all
+    # else
+    # redirect_to new_animal_path
+    # end
   end
 
   def show
-    if current_user && current_user.adopter?
+    # if current_user && current_user.adopter?
     @animal = Animal.find(params[:id])
-    else
-      redirect_to new_animal_path
-    end
+    # else
+    # redirect_to new_animal_path
+    # end
   end
 
   def new

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="devise-card mt-4 mb-5 mx-auto">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <% @matches.each_with_index do |match, index| %>
+      <div class="carousel-item <%= 'active' if index.zero? %>">
+        <h4><%= match[:animal].name %> - <%= (match[:match_data][:score].to_f / 6 * 100).round(0) %>% </h4>
+        <div class="name d-flex justify-content-between">
+          <p>Tamanho: <%= image_tag(match[:match_data][:size_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+          <p>Espécie: <%= image_tag(match[:match_data][:specie_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+          <p>Gênero: <%= image_tag(match[:match_data][:gender_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+        </div>
+        <div class="name d-flex justify-content-between">
+          <p>Idade: <%= image_tag(match[:match_data][:age_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+          <p>Vacinado: <%= image_tag(match[:match_data][:vaccination_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+          <p>Castrado: <%= image_tag(match[:match_data][:neutered_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Próximo</span>
+  </a>
+</div>
+  </div>
+</div>

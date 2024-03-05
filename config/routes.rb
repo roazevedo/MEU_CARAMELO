@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   # post "users", to: "users#create"
 
-  # get "users/:id", to: "users#show", as: :user
+   #get "users/:id", to: "users#show", as: :user
   # get "users/:id/edit", to: "users#edit", as: :edit_user
   # patch "users/:id", to: "users#update"
-  # get "users/match", to: "users#match"
+
+  get "matchs", to: "matchs#show"
 
   root to: "pages#home"
   get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  get 'my_applications', to: 'adoptions#my_applications'
 
   patch "adoptions/:id/update_status", to: "adoptions#update_status", as: :update_status
   patch "adoptions/:id/update_done", to: "adoptions#done", as: :done
