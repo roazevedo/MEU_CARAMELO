@@ -1,8 +1,28 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: :new
+
+
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = User.find_by(id: current_user)
+    @animals = Animal.all
+    @matches = @animals.map do |animal|
+      score = match(@user, animal) # Aqui estamos passando @user e animal como argumentos para o método match
+      { animal: animal, score: score } if score > 0
+    end.compact
   end
+
+
+  # def match
+  #   # @user = User.find(params[:id])
+  #    @user = User.find_by(id: current_user)
+  #    @animals = Animal.all
+  #    @matches = @animals.map do |animal|
+  #      score = match(@user, animal) # Aqui estamos passando @user e animal como argumentos para o método match
+  #      { animal: animal, score: score } if score > 0
+  #    end.compact
+  #  end
+
 
   def new
     @user = User.new
@@ -11,8 +31,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     # If the user is saved successfully, redirect to the user's show page
+
     if @user.save
-      redirect_to @user
+      if @user.adopter == true
+        redirect_to new_adoption_form_path
+      else
+        redirect_to root_path
+      end
     else
       # If the user isn't saved successfully, re-render the form so the user can fix the problems
       flash.now[:alert] = 'Tivemos um problema ao criar o usuário.'
@@ -21,18 +46,27 @@ class UsersController < ApplicationController
     end
   end
 
-  def find_matches(user)
-    user_adopter = user.adopter.pluck(:name)
-    matches = User.joins(:adopter).where(adopter: {name: user_adopter})
+  def match(user, animal)
+    score = 0
 
-    scored_matches = matches.map do |match|
-      shared_adopter = match.adopter.pluck(:name) & user_adopter
-      {match: match, score: shared_adopter}
+    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de tamanho
+    if user.size == animal.size
+      score += 1
     end
 
-    scored_matches.sort_by! { |match| -match[:score] }
-  end
+    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de espécie
+    if user.specie == animal.specie
+      score += 1
+    end
 
+    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de gênero
+    if user.gender == animal.gender
+      score += 1
+    end
+
+    # Retorna a pontuação final
+    score
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -40,7 +74,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @adoption_form = AdoptionForm.find_by(user_id:current_user.id)
+    @adoption_form = AdoptionForm.find_by(user_id: current_user.id)
     if @user.update(user_params)
       if @adoption_form.blank? && @user.adopter == true
         redirect_to new_adoption_form_path

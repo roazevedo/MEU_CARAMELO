@@ -1,15 +1,134 @@
-<%# <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p> %>
-<% if user_signed_in? %>
-  <div class="container">
-    <h1>Pets</h1> <%# Acrescentado Para TESTE %>
-      <% @animals.each do |animal| %>
-        <p><%= link_to animal.name, animal_path(animal) %></p>
-      <% end %>
+<div class="banner">
+  <%= image_tag('home-hero', alt: 'Home Hero', class:"home-hero" ) %>
+
+  <div class="hero-btn d-flex flex-column">
+      <%= link_to "Quero adotar", new_user_registration_path, class: "btn btn-dark-green mb-2" %>
+      <%= link_to "Quero colocar para adoção", new_user_registration_path, class: "btn btn-dark-green-outline" %>
   </div>
-<% else %>
-  <div class="container">
-    <h1>Seja bem-vindo ao Meu Caramelo</h1>
-    <p>Para adotar um pet ou encontrar um novo lar para o pet sob sua tutela faça o login ou cadastre-se.</p>
+</div>
+
+<div class="how-works">
+  <div class="header text-center">
+    <h1 class="title-home mb-0">Vamos mudar uma vida?</h1>
+    <p class="subtitle">Entenda como funciona:</p>
   </div>
-<% end %>
+
+
+  <div class="home-icon">
+    <div class="row">
+      <div class="col-sm text-center">
+        <%= image_tag('1', alt: 'Home Icon 1', class:"icon" ) %>
+        <p>Se você estiver procurando um novo melhor amigo, clique no botão 'Quero adotar' e preencha seu perfil e preferências, que nós vamos achar o seu match perfeito!</p>
+      </div>
+      <div class="col-sm text-center">
+        <%= image_tag('2', alt: 'Home Icon 1', class:"icon" ) %>
+        <p>Se você for uma ONG ou um protetor de animais, clique no botão 'Quero colocar para adoção' que nós vamos te ajudar a encontrar um lar cheio de amor para ele!</p>
+      </div>
+      <div class="col-sm text-center">
+        <%= image_tag('3', alt: 'Home Icon 1', class:"icon" ) %>
+        <p>Vocês podem combinar uma data para a entrega do pet e se comunicarem pelo nosso chat. Você pode compartilhar o final feliz para incentivar mais pessoas a adotarem!</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="happy-end mb-5 mx-5">
+  <div class="header text-center">
+    <h1 class="title-home mb-0 mt-4">Nossos finais felizes</h1>
+    <p class="mb-3 subtitle">Nosso maior orgulho é ajudar a transformar vidas e encontrar o melhor
+    <br> lar para os nossos pets, e o melhor amigo para você!</p>
+  </div>
+
+  <div class="d-flex flex-row mt-4">
+    <div class="card me-5">
+      <div class="card-body d-flex flex-row align-content-between">
+        <div class="my-auto">
+          <%= image_tag('happyend-1', alt: 'Happy End', class:"card-img" ) %>
+        </div>
+        <div class="px-3 d-flex flex-column justify-content-between">
+          <div>
+            <p class="card-title mb-0">Lucas & Juninho</p>
+            <p class="card-text mt-0">Manaus/AM</p>
+          </div>
+          <p class="card-text mt-2">"A chegada do Juninho foi a melhor coisa que aconteceu na minha vida!"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card me-5">
+      <div class="card-body d-flex flex-row align-content-between">
+        <div class="my-auto">
+          <%= image_tag('happyend-2', alt: 'Happy End', class:"card-img" ) %>
+        </div>
+        <div class="px-3 d-flex flex-column justify-content-between">
+          <div>
+            <p class="card-title mb-0">Pedro & Amora</p>
+            <p class="card-text mt-0">Brasília/DF</p>
+          </div>
+          <p class="card-text mt-2">"A Amora me faz companhia o dia inteiro, sou mais feliz com ela!"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body d-flex flex-row align-content-between">
+        <div class="my-auto">
+          <%= image_tag('happyend-3', alt: 'Happy End', class:"card-img" ) %>
+        </div>
+        <div class="px-3 d-flex flex-column justify-content-between">
+          <div>
+            <p class="card-title mb-0">Ana & Thor</p>
+            <p class="card-text mt-0">São Paulo/SP</p>
+          </div>
+          <p class="card-text mt-2">"O Thor gosta de fazer trilha assim como eu, me protege e faz companhia nas nossas aventuras."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="whyadopt mb-5 mx-5">
+  <div class="header text-center">
+    <h1 class="title-home mb-0 mt-3">Por que adotar?</h1>
+    <p class="mb-3 subtitle">Adote, não compre!</p>
+  </div>
+
+  <div class="d-flex flex-row mt-4">
+    <div class="card me-5">
+        <div class="card-body d-flex flex-row align-items-center">
+          <div class="my-auto">
+            <%= image_tag('why-2', alt: 'Happy End', class:"card-img" ) %>
+          </div>
+          <div class="ps-3 align-items-center">
+            <p class="card-text mt-2">Adotar significa ganhar um amigo instantâneo. Muitos animais em abrigos estão sedentos por afeto, criando laços profundos e imediatos.</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="card me-5">
+      <div class="card-body d-flex flex-row align-items-center">
+          <div class="my-auto">
+            <%= image_tag('why-1', alt: 'Happy End', class:"card-img" ) %>
+          </div>
+          <div class="ps-3 align-items-center">
+            <p class="card-text mt-2">A adoção é amiga do bolso. Com custos incluindo vacinas e castração, é uma opção financeiramente acessível.</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body d-flex flex-row align-items-center">
+          <div class="my-auto">
+            <%= image_tag('why-3', alt: 'Happy End', class:"card-img" ) %>
+          </div>
+          <div class="ps-3 align-items-center">
+            <p class="card-text mt-2">Contribui para reduzir a superpopulação em abrigos, oferecendo a mais animais a chance de encontrar lares amorosos.</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+>>>>>>> master
