@@ -49,9 +49,9 @@
           </div>
 
           <div data-show-dashboard-target="adoptionElement" class="my-5 d-none">
-           <%= link_to "Minhas adoções", "#", class: "btn-yellow mb-1"%>
+           <%# <%= link_to "Minhas adoções", "#", class: "btn-yellow mb-1"%>
             <% if @adoptions %>
-              <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+              <%= render 'adoptions/my_applications' %> <!-- FALTA COLOCAR O RENDER AQUI -->
             <% else %>
               <h3>Você não tem nenhuma adoção.</h3>
             <% end %>

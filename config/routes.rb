@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
+  get 'my_applications', to: 'adoptions#my_applications'
+
   patch "adoptions/:id/update_status", to: "adoptions#update_status", as: :update_status
   patch "adoptions/:id/update_done", to: "adoptions#done", as: :done
 
