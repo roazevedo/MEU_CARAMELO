@@ -3,26 +3,8 @@ class UsersController < ApplicationController
 
 
   def show
-    #@user = User.find(params[:id])
-    @user = User.find_by(id: current_user)
-    @animals = Animal.all
-    @matches = @animals.map do |animal|
-      score = match(@user, animal) # Aqui estamos passando @user e animal como argumentos para o método match
-      { animal: animal, score: score } if score > 0
-    end.compact
+    @user = User.find(params[:id])
   end
-
-
-  # def match
-  #   # @user = User.find(params[:id])
-  #    @user = User.find_by(id: current_user)
-  #    @animals = Animal.all
-  #    @matches = @animals.map do |animal|
-  #      score = match(@user, animal) # Aqui estamos passando @user e animal como argumentos para o método match
-  #      { animal: animal, score: score } if score > 0
-  #    end.compact
-  #  end
-
 
   def new
     @user = User.new
@@ -46,27 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def match(user, animal)
-    score = 0
-
-    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de tamanho
-    if user.size == animal.size
-      score += 1
-    end
-
-    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de espécie
-    if user.specie == animal.specie
-      score += 1
-    end
-
-    # Aumenta a pontuação se o usuário e o animal têm a mesma preferência de gênero
-    if user.gender == animal.gender
-      score += 1
-    end
-
-    # Retorna a pontuação final
-    score
-  end
 
   def edit
     @user = User.find(params[:id])
