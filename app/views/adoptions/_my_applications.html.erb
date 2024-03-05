@@ -1,0 +1,53 @@
+<div class="container">
+
+  <div class="card-body">
+    <% @adoptions = Adoption.where('user_id = ? OR animal_id IN (?)', current_user.id, current_user.animal.pluck(:id)) %>
+
+    <div class="title-contract text-center ms-3">
+      <%= "Contracts as a customer" %>
+    </div>
+
+    <div class="customer d-flex flex-wrap">
+    <% if @adoptions.present? && @adoptions.any? %>
+      <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
+
+      <% if adopter_adoptions.present? %>
+        <% adopter_adoptions.each do |adoption| %>
+        <div class="card-contracts p-4 mx-auto">
+
+          <p class="title pt-2 border-bottom mb-3"><strong><%= "Nome do animal: "%></strong> <%= "#{adoption.animal.name}" %></p>
+          <p><strong><%= "Espécie: " %></strong> <%= "#{adoption.animal.specie}" %></p>
+          <p><strong><%= "Idade: " %></strong> <%= "#{adoption.animal.age}" %></p>
+          <p><strong><%= "Porte: " %></strong> <%= "#{adoption.animal.size}" %></p>
+          <p><strong><%= "Gênero: " %></strong> <%= "#{adoption.animal.gender}" %></p>
+          <p><strong><%= "Vacinação: " %></strong> <%= "#{adoption.animal.vaccination}" %></p>
+          <p><strong><%= "Castrado: " %></strong> <%= "#{adoption.animal.neutered}" %></p>
+          <p><strong><%= "História: " %></strong> <%= "#{adoption.animal.story}" %></p>
+          <p><strong><%= "Data: " %></strong> <%= "#{adoption.date}" %></p>
+
+          <% if adoption.status == 'Pending' %>
+              <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
+            <% elsif adoption.status == 'Accepted' %>
+              <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-success text-success"><%= "#{adoption.status}" %></p></p>
+          <% else %>
+              <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
+          <% end %>
+
+
+            <%= link_to "See more details", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+        </div>
+      <% end %>
+
+  </div>
+      <% else %>
+          <div class="card-contracts p-4 w-100">
+            <p class="d-flex mb-0">You have 0 adoptions as a adopter</p>
+          </div>
+
+      <% end %>
+    <% else %>
+    <div class="card-contracts p-4 w-100">
+      <p class="mb-0">No contracts available</p>
+    </div>
+    <% end %>
+</div>

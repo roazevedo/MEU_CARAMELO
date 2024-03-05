@@ -1,7 +1,21 @@
 <!-- pagina de 'match' da adoção logo após o cadastro -->
-<h1>DEU MATCH</h1>
+<div class="container">
+  <h1>DEU MATCH</h1>
+
+  <h3>Parabéns! Você e <strong><%= @animal.name %></strong> deram match!</h3>
+  <h4>Em breve entraremos em contato com você na data escolhida para que possamos conversar um pouco mais.</h4>
+
+    <div class="border border-1 p-3">
+      <h1>Detalhes do Contrato de Adoção</h1>
+      <p><strong>Adotante:</strong> <%= @adoption.user.first_name %></p>
+      <p><strong>Animal:</strong> <%= @adoption.animal.name %></p>
+      <p><strong>Data da Entrevista:</strong> <%= @adoption.date.strftime("%d/%m/%Y") %></p>
+      <p><strong>Status:</strong> <%= @adoption.status %></p>
+    </div>
 
 
 
-<!-- fazer botão para todos os 'matches' (index animals) -->
-<%= link_to 'Ver outros animais com meu perfil ', animal_path(@animal), class: 'btn btn-primary' %>
+
+  <!-- fazer botão para todos os 'matches' (index animals) -->
+  <%= link_to 'Ver outros animais com meu perfil ', animal_path(@animal), class: 'btn btn-primary' %>
+</div>

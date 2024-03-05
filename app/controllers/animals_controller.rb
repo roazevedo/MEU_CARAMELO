@@ -8,11 +8,11 @@ class AnimalsController < ApplicationController
   end
 
   def show
-    if current_user && current_user.animals.present?
+    # if current_user && current_user.animals.present?
     @animal = Animal.find(params[:id])
-    else
-      redirect_to new_animal_path
-    end
+    # else
+      # redirect_to new_animal_path
+    # end
   end
 
   def new

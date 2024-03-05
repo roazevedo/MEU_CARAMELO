@@ -1,3 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
+<%# <h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p> %>
+<% if user_signed_in? %>
+  <div class="container">
+    <h1>Pets</h1> <%# Acrescentado Para TESTE %>
+      <% @animals.each do |animal| %>
+        <p><%= link_to animal.name, animal_path(animal) %></p>
+      <% end %>
+  </div>
+<% else %>
+  <div class="container">
+    <h1>Seja bem-vindo ao Meu Caramelo</h1>
+    <p>Para adotar um pet ou encontrar um novo lar para o pet sob sua tutela faça o login ou cadastre-se.</p>
+  </div>
+<% end %>

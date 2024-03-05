@@ -13,6 +13,7 @@
   <!-- fazer botão para todos os 'matches' (index animals) -->
   <%= link_to 'Voltar', animals_path, class: 'btn btn-dark-green' %>
   <%= link_to 'Editar', edit_animal_path, class: 'btn btn-yellow' %>
+  <%= link_to 'Adotar', new_user_animal_adoption_path(user_id: current_user, animal_id: @animal) %>
 
   <!-- app/views/animals/show.html.erb -->
   <%= link_to "Delete", animal_path(@animal), data: {turbo_method: :delete, turbo_confirm: "Você tem certeza?"}, class:"btn btn-red" %>
