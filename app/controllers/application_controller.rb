@@ -1,6 +1,11 @@
+require 'csv'
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :set_global_categories
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def set_global_categories
+    @states = CSV.read(Rails.root.join('db', 'states.csv')).flatten
+  end
 
   protected
 
