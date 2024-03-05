@@ -3,15 +3,15 @@ class AdoptionsController < ApplicationController
   before_action :set_animal, only: [:index, :new, :create,:show]
   before_action :set_adoption, only: [:show, :edit, :update, :done, :update_status, :done]
 
-  def index
+  def my_applications
     @adoption = Adoption.where('user_id = ? AND animal_id IN (?)', current_user.id, current_user.animals.pluck(:id))
   end
 
   def show
-    user_id = current_user.id
+    # user_id = current_user.id
     @user = current_user
-    @adopter_adoptions = Adoptions.where(user_id: user_id)
-    @owner_adoptions = Adoptions.where(service_id: current_user.animals.pluck(:id))
+    @adopter_adoptions = Adoption.where(user_id: @user)
+    @owner_adoptions = Adoption.where(animal_id: @animal)
 
     # Combine a adoção do adopter e do owner em uma única coleção
     @adoptions = @adopter_adoptions.or(@owner_adoptions)
@@ -28,7 +28,7 @@ class AdoptionsController < ApplicationController
     @adoption.animal = @animal # Atribuindo o animal à adoção
     @adoption.status = 'Pending' # Definindo o status de aceitação da adoção
     @adoption.done = false # Definindo o status de conclusão do contrato
-    @new_adoption_created = true
+    @adoption_created = true
 
     if @adoption.save
       redirect_to user_animal_adoption_path(user_id: @adoption.user.id, animal_id: @adoption.animal.id, id: @adoption.id), notice: 'adoption created successfully!'
