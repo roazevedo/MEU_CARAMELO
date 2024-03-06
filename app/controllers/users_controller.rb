@@ -50,6 +50,7 @@ class UsersController < ApplicationController
       @errors = @user.errors.full_messages
       render 'edit'
     end
+
   end
 
   private
