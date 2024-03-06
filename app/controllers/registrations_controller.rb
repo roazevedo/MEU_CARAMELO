@@ -9,6 +9,6 @@ class RegistrationsController < Devise::RegistrationsController
       new_adoption_form_path
     else
     user_path(resource)
+    end
   end
-end
 end
