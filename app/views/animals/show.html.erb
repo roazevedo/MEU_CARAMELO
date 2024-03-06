@@ -36,7 +36,7 @@
             <p><i class="fa-solid fa-dog me-1"></i><%= @animal.specie %></p>
           <% end %>
 
-          <p><i class="fa-solid fa-baby-carriage"></i> <%= @animal.age %> ano(s) </p>
+          <p><i class="fa-solid fa-baby-carriage"></i> <%= @animal.age %> </p>
           <p><i class="fa-solid fa-ruler-combined"></i> Porte <%= @animal.size %></p>
           <p><i class="fa-solid fa-venus-mars"></i> <%= @animal.gender %></p>
 
@@ -65,7 +65,9 @@
       </div>
 
       <div>
-        <%= link_to "Quero adotar", new_user_animal_adoption_path(user_id: current_user, animal_id: @animal.id), class: "btn-dark-green my-2 w-100" %>
+        <% if current_user.adopter? %>
+          <%= link_to "Quero adotar", new_user_animal_adoption_path(user_id: current_user, animal_id: @animal.id), class: "btn-dark-green my-2 w-100" %>
+        <% end %>
       </div>
     </div>
   </div>
