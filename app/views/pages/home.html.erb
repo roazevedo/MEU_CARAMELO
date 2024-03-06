@@ -2,8 +2,8 @@
   <%= image_tag('home-hero', alt: 'Home Hero', class:"home-hero" ) %>
 
   <div class="hero-btn d-flex flex-column">
-      <%= link_to "Quero adotar", new_user_registration_path, class: "btn btn-dark-green mb-2" %>
-      <%= link_to "Quero colocar para adoção", new_user_registration_path, class: "btn btn-dark-green-outline" %>
+      <%= link_to "Quero adotar", new_user_registration_path(adopter: "true"), class: "btn btn-dark-green mb-2" %>
+      <%= link_to "Quero colocar para adoção", new_user_registration_path(adopter: "false"), class: "btn btn-dark-green-outline" %>
   </div>
 </div>
 
@@ -131,4 +131,3 @@
   </div>
 
 </div>
->>>>>>> master

@@ -31,7 +31,7 @@
         <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
           <div class="name d-flex justify-content-between">
             <div class="col-3 mr-3">
-              <%= f.input :age, label: "Idade" %>
+              <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
             </div>
             <div class="col-3 mr-3">
               <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>

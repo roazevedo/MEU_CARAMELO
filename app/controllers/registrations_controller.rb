@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.adopter == true
       new_adoption_form_path
     else
-    user_path(resource)
+      user_path(resource)
+    end
   end
-end
 end

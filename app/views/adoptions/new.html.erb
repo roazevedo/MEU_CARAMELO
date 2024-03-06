@@ -5,7 +5,7 @@
   <div class="devise-card mt-4 mb-5 mx-auto">
     <%= simple_form_for [@user, @animal, @adoption] do |f| %>
       <%= f.input :date, as: :date, label: 'Data da adoção:', start_year: Date.today.year, end_year: Date.today.year + 1 %>
-      <%= f.button :submit, class:"btn-yellow" %>
+      <%= f.button :submit, "Criar", class:"btn-yellow" %>
     <% end %>
   </div>
 </div>
