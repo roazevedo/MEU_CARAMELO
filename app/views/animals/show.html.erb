@@ -65,7 +65,7 @@
       </div>
 
       <div>
-        <%= button_to "Quero adotar", "#", class: "btn-dark-green my-2 w-100" %>
+        <%= link_to "Quero adotar", new_user_animal_adoption_path(user_id: current_user, animal_id: @animal.id), class: "btn-dark-green my-2 w-100" %>
       </div>
     </div>
   </div>

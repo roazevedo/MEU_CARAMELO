@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
 
- resources :adoption_forms, only: [:index, :show, :new, :create, :edit, :update]
+
 
   # get "adoptionforms/:id", to: "adoptionforms#show", as: :adoptionform
   # get "adoptionforms/new", to: "adoptionforms#new", as: :new_adoptionform
@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   patch "adoptions/:id/update_status", to: "adoptions#update_status", as: :update_status
   patch "adoptions/:id/update_done", to: "adoptions#done", as: :done
+
+  resources :adoption_forms, only: [:index, :show, :new, :create, :edit, :update]
 
   resources :animals
   resources :users do

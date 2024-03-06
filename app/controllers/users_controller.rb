@@ -7,11 +7,16 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if params[:adopter] == "true"
+      @user = User.new(adopter: true)
+    else
+      @user = User.new
+    end
   end
 
   def create
     @user = User.new(user_params)
+    @user.adopter = true if params[:user][:adopter] == "true"
     # If the user is saved successfully, redirect to the user's show page
 
     if @user.save
