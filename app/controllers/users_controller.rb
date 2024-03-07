@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       if @adoption_form.blank? && @user.adopter == true
         redirect_to new_adoption_form_path
       else
-        redirect_to root_path
+        user_path
       end
     else
       flash.now[:alert] = 'Tivemos um problema ao editar o usuário.'

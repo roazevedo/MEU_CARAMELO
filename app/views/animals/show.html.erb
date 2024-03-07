@@ -29,7 +29,7 @@
         </div>
 
         <div class="my-2">
-          <p class="mb-0"><i class="fa-solid fa-user me-1"></i> Publicado por <b><%= link_to @animal.user.first_name, "/", class:"name" %></b></p>
+          <p class="mb-0"><i class="fa-solid fa-user me-1"></i> Publicado por <b><%= link_to @animal.user.first_name, user_path(@animal.user), class:"name" %></b></p>
           <p><i class="fa-solid fa-location-dot me-1"></i> <%= @animal.city %>/<%= @animal.state %></p>
         </div>
 

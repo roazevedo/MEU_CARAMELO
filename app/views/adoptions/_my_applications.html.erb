@@ -1,20 +1,25 @@
-<div class="container">
+<div class="container mb-4">
   <% if current_user.adopter? %>
-    <div class="card-body">
-      <div class="customer d-flex flex-wrap">
+    <div class="card-body mb-4">
+      <div class="customer d-flex flex-wrap mb-4">
         <% if @adoptions.present? && @adoptions.any? %>
           <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
 
           <% if adopter_adoptions.present? %>
+            <div class="row d-flex align-items-between mx-3">
             <% adopter_adoptions.each do |adoption| %>
               <div class="col-sm-3 mb-4">
                 <div class="card-index mx-auto my-auto">
 
                   <div>
-                    <%= image_tag "cat.jpg", class:"image" %>
+                    <% if adoption.animal.photo.attached? %>
+                      <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
+                    <% else %>
+                      <%= image_tag "CRMLO.png", width: 240, height: 140 %>
+                    <% end %>
                   </div>
 
-                  <div class="back-caramelo d-flex justify-content-between p-4">
+                  <div class="back-caramelo d-flex justify-content-between p-4 mb-4">
                     <div class="animal-preview">
                       <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
                       <p class="mb-0"><%= "Tutor(a): " %><%= "#{adoption.animal.user.first_name} #{adoption.animal.user.last_name}" %></p>
@@ -34,8 +39,8 @@
                   </div>
                 </div>
               </div>
-
             <% end %>
+            </div>
           <% else %>
             <div class="card-contracts p-4 w-100">
               <p class="d-flex mb-0">Você ainda não tem nenhuma adoção</p>
@@ -53,13 +58,18 @@
     <% if @adoptions.present? && @adoptions.any? %>
       <% owner_adoptions = @adoptions.select { |adoption| current_user.id == adoption.animal.user.id } %>
         <% if owner_adoptions.present? %>
+          <div class="row d-flex align-items-between mx-3">
           <% owner_adoptions.each do |adoption| %>
             <div class="col-sm-3 mb-4">
               <div class="card-index mx-auto my-auto">
                 <div>
-                  <%= image_tag "cat.jpg", class:"image" %>
+                  <% if adoption.animal.photo.attached? %>
+                    <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
+                  <% else %>
+                    <%= image_tag "CRMLO.png", width: 240, height: 140 %>
+                  <% end %>
                 </div>
-                <div class="back-caramelo d-flex justify-content-between p-4">
+                <div class="back-caramelo d-flex justify-content-between p-4 mb-4">
                   <div class="animal-preview">
                     <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
                     <p class="mb-0"><%= "Adotante: " %><%= "#{adoption.user.first_name} #{adoption.user.last_name}" %></p>
@@ -75,12 +85,13 @@
 
                     <%= link_to "Ver detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
                     <%= link_to "Visualizar perfil", user_path(adoption.user), class: 'btn-yellow-outline w-100' %>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
           <% end %>
+          </div>
         <% else %>
           <div class="card-contracts p-4 w-100">
             <p class="d-flex mb-0">Você ainda não possui nenhum interessado</p>

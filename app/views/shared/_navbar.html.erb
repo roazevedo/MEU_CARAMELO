@@ -26,7 +26,11 @@
               </li>
               <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                <% if current_user.photo.attached? %>
+                  <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                <% else %>
+                  <%= image_tag "cat.jpg", class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                 <% end %>
               </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Editar Perfil", edit_user_path(current_user), class: "dropdown-item" %>
@@ -46,7 +50,11 @@
               </li>
               <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                <% if current_user.photo.attached? %>
+                  <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                <% else %>
+                  <%= image_tag "cat.jpg", class: "avatar", alt: "dropdown menu", height: 40, width: 40 %>
+                <% end %>
               </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Editar Perfil", edit_user_path(current_user), class: "dropdown-item" %>

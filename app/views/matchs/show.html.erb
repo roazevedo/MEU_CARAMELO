@@ -5,11 +5,16 @@
   </div>
 
   <div class="row d-flex align-items-between mx-3">
-    <% @matches.each do |match| %>
+    <% @matches.sort_by { |match| -match[:match_data][:score] }.each do |match| %>
+
       <div class="col-sm-3 mb-4">
         <div class="card-index mx-auto my-auto">
           <div>
-            <%= image_tag "cat.jpg", class:"image" %>
+            <% if match[:animal].photo.attached? %>
+              <%= cl_image_tag animal.photo.key, width: 240, height: 240, crop: :fill %>
+            <% else %>
+              <%= image_tag "CRMLO.png", width: 240, height: 240 %>
+            <% end %>
           </div>
 
           <div class="back-caramelo d-flex justify-content-between p-2">
