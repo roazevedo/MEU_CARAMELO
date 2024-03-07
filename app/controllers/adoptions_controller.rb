@@ -26,7 +26,7 @@ class AdoptionsController < ApplicationController
     @adoption = Adoption.new(adoption_params)
     @adoption.user = current_user # Atribuindo o usuário logado ao contrato
     @adoption.animal = @animal # Atribuindo o animal à adoção
-    @adoption.status = 'Pending' # Definindo o status de aceitação da adoção
+    @adoption.status = 'Pendente' # Definindo o status de aceitação da adoção
     @adoption.done = false # Definindo o status de conclusão do contrato
     @adoption_created = true
 

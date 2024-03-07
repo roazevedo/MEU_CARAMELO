@@ -119,12 +119,11 @@
             </div>
 
             <div data-show-dashboard-target="adoptionElement" class="my-5 d-none">
-              <%= link_to "Interessados em adotar", "#", class: "btn-yellow mb-1"%>
-              <% if @adoptions %>
-                <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
-              <% else %>
-                <h3>Não há nenhum interessado em seus animais.</h3>
-              <% end %>
+                <% if @adoptions %>
+                  <%= render 'adoptions/my_applications' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+                <% else %>
+                  <h3>Não há nenhum interessado em seus animais.</h3>
+                <% end %>
             </div>
 
             <div data-show-dashboard-target="animalElement" class="my-5 d-none">

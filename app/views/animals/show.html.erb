@@ -65,7 +65,14 @@
       </div>
 
       <div>
-        <% if current_user.adopter? %>
+        <% if @animal.adoptions.present? %>
+          <% adoptions = @animal.adoptions %>
+          <% if adoptions.any? { |adoption| adoption.status == "Aceito" } %>
+            <div class="bg-dark text-white d-flex justify-content-center align-items-center rounded-3 w-100 p-2">Adotado</div>
+          <% elsif current_user.adopter? %>
+            <%= link_to "Quero adotar", new_user_animal_adoption_path(user_id: current_user, animal_id: @animal.id), class: "btn-dark-green my-2 w-100" %>
+          <% end %>
+        <% elsif current_user.adopter? %>
           <%= link_to "Quero adotar", new_user_animal_adoption_path(user_id: current_user, animal_id: @animal.id), class: "btn-dark-green my-2 w-100" %>
         <% end %>
       </div>
