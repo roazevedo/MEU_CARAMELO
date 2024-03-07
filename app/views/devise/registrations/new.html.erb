@@ -29,20 +29,20 @@
         </div>
 
         <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
-          <div class="name d-flex justify-content-between">
-            <div class="col-3 mr-3">
-              <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
-            </div>
-            <div class="col-3 mr-3">
-              <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
-            </div>
-            <div class="col-3 mr-3">
-              <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
-            </div>
-            <div class="col-3">
-              <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato'] %>
-            </div>
+           <div class="name d-flex justify-content-between">
+          <div class="col-3" >
+            <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
           </div>
+          <div class="col-3 mx-1">
+            <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
+          </div>
+          <div class="col-2.5">
+            <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
+          </div>
+          <div class="col-3.5  mx-1">
+            <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato']%>
+          </div>
+        </div>
 
           <div class="name d-flex justify-content-between">
             <%= f.input :vaccination, label: "Vacinado?" %>
