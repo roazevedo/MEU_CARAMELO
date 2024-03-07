@@ -44,6 +44,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       if @adoption_form.blank? && @user.adopter == true
         redirect_to new_adoption_form_path
+      else
+        redirect_to root_path
       end
     else
       flash.now[:alert] = 'Tivemos um problema ao editar o usuário.'
@@ -57,6 +59,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :city, :state, :phone,
-                                 :age, :size, :gender, :vaccination, :neutered, :specie, :adopter, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at)
+                                 :age, :size, :gender, :vaccination, :neutered, :specie, :adopter, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :photo)
   end
 end
