@@ -1,31 +1,49 @@
-<div class="container">
-  <div class="devise-card mt-4 mb-5 mx-auto">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <% @matches.each_with_index do |match, index| %>
-      <div class="carousel-item <%= 'active' if index.zero? %>">
-        <h4><%= match[:animal].name %> - <%= (match[:match_data][:score].to_f / 6 * 100).round(0) %>% </h4>
-        <div class="name d-flex justify-content-between">
-          <p>Tamanho: <%= image_tag(match[:match_data][:size_match] ? 'verdadeiro.png' : 'falso.png') %></p>
-          <p>Espécie: <%= image_tag(match[:match_data][:specie_match] ? 'verdadeiro.png' : 'falso.png') %></p>
-          <p>Gênero: <%= image_tag(match[:match_data][:gender_match] ? 'verdadeiro.png' : 'falso.png') %></p>
-        </div>
-        <div class="name d-flex justify-content-between">
-          <p>Idade: <%= image_tag(match[:match_data][:age_match] ? 'verdadeiro.png' : 'falso.png') %></p>
-          <p>Vacinado: <%= image_tag(match[:match_data][:vaccination_match] ? 'verdadeiro.png' : 'falso.png') %></p>
-          <p>Castrado: <%= image_tag(match[:match_data][:neutered_match] ? 'verdadeiro.png' : 'falso.png') %></p>
+<div class="container mb-4">
+  <div class="mb-4">
+    <p class="navigation mb-1 mt-5"><%= link_to "Home", "/", class:"navigation" %> / Meus Matchs</p>
+    <h4 class="second-title"><%=@matches.count %> Matchs</h4>
+  </div>
+
+  <div class="row d-flex align-items-between mx-3">
+    <% @matches.each do |match| %>
+      <div class="col-sm-3 mb-4">
+        <div class="card-index mx-auto my-auto">
+          <div>
+            <%= image_tag "cat.jpg", class:"image" %>
+          </div>
+
+          <div class="back-caramelo d-flex justify-content-between p-2">
+            <div class="animal-preview">
+              <h3 class="mb-0"><%= match[:animal].name%> - <%= (match[:match_data][:score].to_f / 6 * 100).round(0) %>% </h3>
+              <p class="mb-0"><%= match[:animal].city %>/<%= match[:animal].state %></p>
+            </div>
+
+            <div class="icons">
+              <%= link_to "<i class=\"fa-solid fa-circle-info\"></i>".html_safe, animal_path(match[:animal].id), class:"info" %>
+              <%= link_to "<i class=\"fa-solid fa-heart\"></i>".html_safe, animal_path(match[:animal].id), class:"info" %>
+            </div>
+          </div>
+
+          <div class="animal-preview">
+            <div class="back-caramelo d-flex justify-content-between p-2">
+              <p class="mb-0">Tamanho: <%= match[:match_data][:size_match] ? "<i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe%></p>
+              <p class="mb-0">Espécie: <%= match[:match_data][:specie_match] ? "<i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe %></p>
+              <p class="mb-0">Gênero: <%= match[:match_data][:gender_match] ? "<i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe %></p>
+            </div>
+          </div>
+
+          <div class="animal-preview">
+            <div class="back-caramelo d-flex justify-content-between p-2">
+              <p class="mb-0">Idade: <%= match[:match_data][:age_match] ? "<i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe %></p>
+              <p class="mb-0">Vacinado: <%= match[:match_data][:vaccination_match] ? "<i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe %></p>
+              <p class="mb-0">Castrado: <%= match[:match_data][:neutered_match] ? " <i class=\"fa-solid fa-circle-check\"></i>".html_safe : "<i class=\"fa-solid fa-ban\"></i>".html_safe %></p>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Anterior</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Próximo</span>
-  </a>
 </div>
-  </div>
+  <div class="container mb-4">
+   <%= link_to 'Todos animais', animals_path, class: 'btn-orange-outline' %>
 </div>

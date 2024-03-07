@@ -1,22 +1,20 @@
 
 <div class="container">
   <div class="row">
-    <h2 class="text-center mt-4 mb-4 p-0">Formulario de Adoção</h2>
-    <div class="col-12 col-md-6 offset-lg-3 mb-5">
     <%= simple_form_for @adoption_form do |f| %>
     <div class="name d-flex justify-content-between">
-    <div class="col-4 mr-3">
+    <div class="col-7 mr-3">
     <%= f.input :pergunta1, label: "Tem criança na residência? ", collection: ['Sim', 'Não'] %>
     </div>
-    <div class="col-7 mr-3">
+    <div class="col-4 mr-3">
     <%= f.input :pregunta2, label: "Mora em? ", collection: ['Casa', 'Apartamento'] %>
     </div>
     </div>
     <div class="name d-flex justify-content-between">
-    <div class="col-4 mr-3">
+    <div class="col-7 mr-3">
     <%= f.input :pergunta3, label: "Espaço disponível na casa? ", collection: ['Pequeno', 'Medio', 'Grande'] %>
     </div>
-    <div class="col-7 mr-3">
+    <div class="col-4 mr-3">
     <%= f.input :pergunta4, label: "Tem outros pets? ", collection: ['Sim', 'Não'] %>
     </div>
     </div>
@@ -27,6 +25,5 @@
     <%= f.button :submit, "Concluir", class:"btn-dark-green" %>
   <% end %>
 
-   </div>
   </div>
-  </div>
+</div>

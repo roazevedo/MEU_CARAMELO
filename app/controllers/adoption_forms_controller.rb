@@ -44,7 +44,7 @@ class AdoptionFormsController < ApplicationController
   private
 
   def adoption_form_params
-    params.require(:adoption_form).permit(:query, :user_id, :pergunta1, :pergunta2, :pergunta3, :pergunta4, :pergunta5,
+    params.require(:adoption_form).permit(:query, :user_id, :pergunta1, :pregunta2, :pergunta3, :pergunta4, :pergunta5,
     :pergunta6, :pergunta7, :pergunta8)
   end
 end

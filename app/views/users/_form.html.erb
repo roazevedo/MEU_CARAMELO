@@ -1,5 +1,6 @@
   <%= simple_form_for @user , data: { controller: "tab" } do |f| %>
     <div class="tab-content">
+
     <div class="tab-pane active" id="dados">
     <div class="name d-flex justify-content-between">
     <%= f.input :first_name, label: "Nome",  required: true %>
@@ -28,15 +29,31 @@
        </div>
        </div>
 
-       <div class="name d-flex justify-content-between">
-       <%= f.input :vaccination, label: "Vacinado?"%>
-       <%= f.input :neutered, label: "Castrado?"%>
-       </div>
+      <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
+        <div class="name d-flex justify-content-between">
+          <div class="col-3" >
+            <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
+          </div>
+          <div class="col-3 mx-1">
+            <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
+          </div>
+          <div class="col-2.5">
+            <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
+          </div>
+          <div class="col-3.5  mx-1">
+            <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato']%>
+          </div>
+        </div>
 
-     </div>
-   </div>
 
- <%= f.button :submit, "Update", class:"btn-yellow" %>
- <%= link_to 'Voltar ao menu principal', user_path(@user), class: 'btn btn-dark-green' %>
+        <div class="name d-flex justify-content-between">
+          <%= f.input :vaccination, label: "Vacinado?"%>
+          <%= f.input :neutered, label: "Castrado?"%>
+        </div>
+      </div>
+    </div>
 
+
+    <%= f.button :submit, "Update", class:"btn-yellow" %>
+    <%= link_to 'Voltar ao menu principal', user_path(@user), class: 'btn btn-dark-green' %>
   <% end %>
