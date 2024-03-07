@@ -1,11 +1,15 @@
-<div class="container">
-  <div class="mb-4">
+<div class="container d-flex flex-column mx-auto">
+  <div class="mb-1">
     <p class="navigation mb-1 mt-5"><%= link_to "Home", "/", class:"navigation" %> / <%= link_to "Animais para adoção", animals_path, class:"navigation" %> / <%= @animal.name %></p>
   </div>
 
-  <div class="card-show d-flex mb-5">
+  <div class="card-show d-flex mb-5 mx-auto">
     <div>
-      <%= image_tag "cat.jpg", class:"image" %>
+      <% if @animal.photo.attached? %>
+        <%= cl_image_tag @animal.photo.key, width: 550, height: 550, crop: :fill %>
+      <% else %>
+        <%= image_tag "CRMLO.png", width: 550, height: 550 %>
+      <% end %>
     </div>
 
     <div class="animal-info py-4 px-5 d-flex flex-column justify-content-between">

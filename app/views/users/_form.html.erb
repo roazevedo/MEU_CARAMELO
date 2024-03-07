@@ -5,6 +5,7 @@
     <%= f.input :first_name, label: "Nome",  required: true %>
     <%= f.input :last_name, label: "Sobrenome", required: true %>
     </div>
+    <%= f.input :photo, label: "Foto do Perfil", as: :file %>
     <%= f.input :city, label: "Cidade", required: true %>
     <%= f.input :state, label: "Estado", required: true %>
     <%= f.input :phone, label: "Telefone", required: true %>
@@ -35,7 +36,7 @@
      </div>
    </div>
 
- <%= f.button :submit, "Update", class:"btn-orange" %>
+ <%= f.button :submit, "Update", class:"btn-yellow" %>
  <%= link_to 'Voltar ao menu principal', user_path(@user), class: 'btn btn-dark-green' %>
 
   <% end %>

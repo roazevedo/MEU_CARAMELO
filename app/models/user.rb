@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :animals
   has_one :adoption_forms
   has_many :adoptions
+  has_one_attached :photo
 end
