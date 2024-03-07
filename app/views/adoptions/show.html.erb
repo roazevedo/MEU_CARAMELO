@@ -8,6 +8,7 @@
   <% end %>
 
     <div class="border border-1 p-3">
+
       <h1>Detalhes da Aplicação</h1>
       <p><strong><%= "Interessado(a): " %></strong><%= "#{@adoption.user.first_name} #{@adoption.user.last_name}" %></p>
       <p><strong><%= "E-mail de #{@adoption.user.first_name}: " %></strong><%= "#{@adoption.user.email}" %></p>
@@ -35,7 +36,6 @@
       <%#<% if current_user.adopter? && @adoption.status == "Aceito" %>
         <%#<%= link_to 'Conte-nos sua experiência', '#', class:'btn-yellow-outline' %>
       <%#<% end %>
-
 
     </div>
 

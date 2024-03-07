@@ -18,7 +18,7 @@ class AdoptionFormsController < ApplicationController
     @adoption_form = AdoptionForm.new(adoption_form_params)
     @adoption_form.user = current_user
     if @adoption_form.save
-      redirect_to @adoption_form
+      redirect_to matchs_path(current_user)
     else
       flash.now[:alert] = 'There was a problem creating the Adoption Form.'
       @errors = @adoption_form.errors.full_messages
@@ -27,7 +27,7 @@ class AdoptionFormsController < ApplicationController
   end
 
   def edit
-    @adoption_form = AdoptionForm.find(params[:id])
+    @adoption_form = AdoptionForm.find_by(user_id: params[:id])
   end
 
   def update

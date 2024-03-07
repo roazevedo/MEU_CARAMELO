@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_144903) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_231255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_144903) do
 
   create_table "animals", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
+    t.string "age"
     t.string "size"
     t.string "gender"
     t.boolean "vaccination"
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_144903) do
     t.integer "phone"
     t.string "city"
     t.string "state"
-    t.integer "age"
+    t.string "age"
     t.string "size"
     t.string "gender"
     t.boolean "vaccination"

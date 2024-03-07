@@ -1,4 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
+  def new
+    if params[:adopter] == "true"
+      @user = User.new(adopter: true)
+    else
+      @user = User.new
+    end
+  end
+
   protected
 
   def after_sign_up_path_for(resource)
@@ -8,7 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.adopter == true
       new_adoption_form_path
     else
-    user_path(resource)
+      user_path(resource)
+    end
   end
-end
 end
