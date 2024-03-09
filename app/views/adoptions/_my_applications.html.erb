@@ -29,7 +29,7 @@
                           <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
                         <% end %>
 
-                        <%= link_to "Ver mais detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+                        <%= link_to "Ver mais detalhes", adoption_path(adoption), class:'btn-yellow-outline w-100' %>
                         <%= link_to "Visualizar perfil", user_path(adoption.animal.user.id), class: 'btn-yellow-outline w-100' %>
                       </div>
                     </div>
@@ -78,7 +78,7 @@
                         <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
                       <% end %>
 
-                      <%= link_to "Ver detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+                      <%= link_to "Ver detalhes", adoption_path(adoption), class:'btn-yellow-outline w-100' %>
                       <%= link_to "Visualizar perfil", user_path(adoption.user), class: 'btn-yellow-outline w-100' %>
                       </div>
                     </div>
