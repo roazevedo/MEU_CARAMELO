@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       if @user.adopter == true
-        redirect_to new_adoption_form_path
+        redirect_to matchs_path(current_user)
       else
         redirect_to root_path
       end
