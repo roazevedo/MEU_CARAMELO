@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
     # Por exemplo, você pode redirecioná-lo para a página de perfil do usuário:
     @user = User.find_by(id: current_user)
     if @user.adopter == true
-      new_adoption_form_path
+      matchs_path
     else
       user_path(resource)
     end

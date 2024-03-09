@@ -25,10 +25,11 @@
           <%= f.input :city, label: "Cidade", required: true %>
           <%= f.input :state, label: 'Estado', as: :select, collection: @states, placeholder: 'Selecione o Estado', include_blank: true, class:"state ms-3", required: true %>
           <%= f.input :phone, label: "Telefone", required: true %>
-          <%= f.input :adopter, input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
+          <%= f.input :adopter, label: "Você deseja adotar?", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
         </div>
 
         <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
+          <p class="title text-center mt-0 mb-0">Ótimo! Como seria seu animal ideal?</p>
            <div class="name d-flex justify-content-between">
           <div class="col-3" >
             <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
@@ -53,7 +54,6 @@
       <div class="container">
         <div class="form-actions">
           <%= f.button :submit, "Cadastrar", class: "btn-dark-green mb-1" %>
-          <%= render "devise/shared/links" %>
         </div>
       </div>
     <% end %>
