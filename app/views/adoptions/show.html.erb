@@ -51,9 +51,9 @@
         </div>
       <% end %>
 
-      <%#<% if current_user.adopter? && @adoption.status == "Aceito" %>
-        <%#<%= link_to 'Conte-nos sua experiência', '#', class:'btn-yellow-outline' %>
-      <%#<% end %>
+      <% if current_user.adopter? && @adoption.status == "Aceito" %>
+        <%= link_to 'Conte-nos sua experiência', new_user_animal_adoption_testimony_path(user_id: current_user, animal_id: @adoption.animal.id, adoption_id: @adoption.id), class:'btn-yellow-outline' %>
+      <% end %>
 
     </div>
 
