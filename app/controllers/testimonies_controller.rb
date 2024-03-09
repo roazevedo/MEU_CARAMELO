@@ -1,12 +1,11 @@
 class TestimoniesController < ApplicationController
-  before_action :set_user, only: [:index, :show, :new, :create]
-  before_action :set_animal, only: [:index, :show, :new, :create]
-  before_action :set_adoption, only: [:show, :new, :create]
+  before_action :set_user, only: [:new, :create]
+  before_action :set_animal, only: [:new, :create]
+  before_action :set_adoption, only: [:new, :create]
   before_action :set_testimony, only: [:edit, :update]
   before_action :authenticate_user!
 
   def new
-    @adoption = Adoption.find(params[:adoption_id])
     @testimony = Testimony.new
   end
 
