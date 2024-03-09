@@ -1,8 +1,9 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<% if user_signed_in? && current_user.adopter? %>
+  <p class="navigation mb-1 mt-5"><%= link_to "Home", "/", class:"navigation" %> / <%= @adoption.animal.user.first_name %> <%= @adoption.animal.user.last_name %></p>
 
-<p>Email: <%= @user.email %></p>
-<p>City: <%= @user.city %></p>
-<p>State: <%= @user.state %></p>
-<p>Phone: <%= @user.phone %></p>
+  <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %>
 
-<%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %> |
+<% else %>
+
+
+<% end %>
