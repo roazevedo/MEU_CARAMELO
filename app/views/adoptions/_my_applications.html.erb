@@ -1,30 +1,75 @@
-<div class="container mb-4">
-  <% if current_user.adopter? %>
-    <div class="card-body mb-4">
-      <div class="customer d-flex flex-wrap mb-4">
-        <% if @adoptions.present? && @adoptions.any? %>
-          <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
-
+<div class="container mb-4"> <!-- Add CSS class to the container -->
+    <% if current_user.adopter? %> <!-- Se o usuário for adotante -->
+      <% if @adoptions.present? && @adoptions.any? %>
+        <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
+        <div class="row d-flex align-items-between mx-3">
           <% if adopter_adoptions.present? %>
-            <div class="row d-flex align-items-between mx-3">
             <% adopter_adoptions.each do |adoption| %>
               <div class="col-sm-3 mb-4">
                 <div class="card-index mx-auto my-auto">
-
-                  <div>
+                  <div class="position-relative">
                     <% if adoption.animal.photo.attached? %>
                       <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
                     <% else %>
-                      <%= image_tag "CRMLO.png", width: 240, height: 140 %>
+                      <%= image_tag "CRMLO.png", width: 240, height: 240 %>
                     <% end %>
                   </div>
 
-                  <div class="back-caramelo d-flex justify-content-between p-4 mb-4">
+                  <div class="back-caramelo d-flex justify-content-between p-4">
                     <div class="animal-preview">
                       <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
                       <p class="mb-0"><%= "Tutor(a): " %><%= "#{adoption.animal.user.first_name} #{adoption.animal.user.last_name}" %></p>
                       <p class="mb-0"><%= "#{adoption.animal.user.city}/#{adoption.animal.user.state}" %></p>
+                      <div class="my-icons">
+                        <% if adoption.status == 'Pendente' %>
+                          <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
+                        <% elsif adoption.status == 'Aceito' %>
+                          <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-success text-success"><%= "#{adoption.status}" %></p></p>
+                        <% else %>
+                          <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
+                        <% end %>
 
+                        <%= link_to "Ver mais detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+                        <%= link_to "Visualizar perfil", user_path(adoption.animal.user.id), class: 'btn-yellow-outline w-100' %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+          <div class="card-contracts p-4 w-100">
+            <p class="d-flex mb-0">Você ainda não tem nenhuma adoção</p>
+          </div>
+          <% end %>
+        </div> <!-- END: row -->
+      <% else %>
+        <div class="card-contracts p-4 w-100">
+          <p class="mb-0">Nenhuma aplicação encontrada</p>
+        </div>
+      <% end %>
+    <% else %>
+
+      <% if @adoptions.present? && @adoptions.any? %>
+        <% owner_adoptions = @adoptions.select { |adoption| current_user.id == adoption.animal.user.id } %>
+        <div class="row d-flex align-items-between mx-3">
+          <% if owner_adoptions.present? %>
+            <% owner_adoptions.each do |adoption| %>
+              <div class="col-sm-3 mb-4">
+                <div class="card-index mx-auto my-auto">
+                  <div class="position-relative">
+                    <% if adoption.animal.photo.attached? %>
+                      <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
+                    <% else %>
+                      <%= image_tag "CRMLO.png", width: 240, height: 240 %>
+                    <% end %>
+                  </div>
+                  <div class="back-caramelo d-flex justify-content-between p-4">
+                    <div class="animal-preview">
+                      <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
+                      <p class="mb-0"><%= "Adotante: " %><%= "#{adoption.user.first_name} #{adoption.user.last_name}" %></p>
+                      <p class="mb-0"><%= "#{adoption.user.city}/#{adoption.user.state}" %></p>
+                      <div class="my-icons">
                       <% if adoption.status == 'Pendente' %>
                         <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
                       <% elsif adoption.status == 'Aceito' %>
@@ -33,76 +78,24 @@
                         <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
                       <% end %>
 
-                      <%= link_to "Ver mais detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
-                      <%= link_to "Visualizar perfil", user_path(adoption.animal.user.id), class: 'btn-yellow-outline w-100' %>
+                      <%= link_to "Ver detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+                      <%= link_to "Visualizar perfil", user_path(adoption.user), class: 'btn-yellow-outline w-100' %>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             <% end %>
-            </div>
           <% else %>
             <div class="card-contracts p-4 w-100">
-              <p class="d-flex mb-0">Você ainda não tem nenhuma adoção</p>
+              <p class="d-flex mb-0">Você ainda não possui nenhum interessado</p>
             </div>
           <% end %>
-        <% else %>
-          <div class="card-contracts p-4 w-100">
-            <p class="mb-0">Nenhuma aplicação encontrada</p>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% else %>
-
-    <% if @adoptions.present? && @adoptions.any? %>
-      <% owner_adoptions = @adoptions.select { |adoption| current_user.id == adoption.animal.user.id } %>
-        <% if owner_adoptions.present? %>
-          <div class="row d-flex align-items-between mx-3">
-          <% owner_adoptions.each do |adoption| %>
-            <div class="col-sm-3 mb-4">
-              <div class="card-index mx-auto my-auto">
-                <div>
-                  <% if adoption.animal.photo.attached? %>
-                    <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
-                  <% else %>
-                    <%= image_tag "CRMLO.png", width: 240, height: 140 %>
-                  <% end %>
-                </div>
-                <div class="back-caramelo d-flex justify-content-between p-4 mb-4">
-                  <div class="animal-preview">
-                    <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
-                    <p class="mb-0"><%= "Adotante: " %><%= "#{adoption.user.first_name} #{adoption.user.last_name}" %></p>
-                    <p class="mb-0"><%= "#{adoption.user.city}/#{adoption.user.state}" %></p>
-
-                    <% if adoption.status == 'Pendente' %>
-                      <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
-                    <% elsif adoption.status == 'Aceito' %>
-                      <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-success text-success"><%= "#{adoption.status}" %></p></p>
-                    <% else %>
-                      <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
-                    <% end %>
-
-                    <%= link_to "Ver detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
-                    <%= link_to "Visualizar perfil", user_path(adoption.user), class: 'btn-yellow-outline w-100' %>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          </div>
-        <% else %>
-          <div class="card-contracts p-4 w-100">
-            <p class="d-flex mb-0">Você ainda não possui nenhum interessado</p>
-          </div>
-        <% end %>
-    <% else %>
-      <div class="card-contracts p-4 w-100">
-        <p class="mb-0">Nenhuma adoção encontrada</p>
-      </div>
+        </div> <!-- END: row -->
+      <% else %>
+        <div class="card-contracts p-4 w-100">
+          <p class="mb-0">Nenhuma adoção encontrada</p>
+        </div>
+      <% end %>
     <% end %>
-
-
-  <% end %>
 </div>

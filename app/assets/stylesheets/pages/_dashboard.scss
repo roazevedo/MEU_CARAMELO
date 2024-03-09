@@ -1,0 +1,61 @@
+.dashboard-card {
+  width: 200px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dashboard-button {
+  background-color: #f6edd8;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 120px;
+  margin-top: 40px;
+  text-align: left;
+  a:link {
+      text-decoration: none;
+      color: $dark;
+  }
+  &:hover {
+      background-color: #f8e2af;
+  }
+  .h5 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: $dark;
+      text-align: left;
+      font-weight: 500;
+  }
+  .description {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: $dark;
+      text-align: left;
+  }
+}
+
+.dashboard-card-static {
+  background-color: #e9e8e8;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 50vh;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+button {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}

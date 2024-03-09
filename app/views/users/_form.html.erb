@@ -10,27 +10,12 @@
     <%= f.input :city, label: "Cidade", required: true %>
     <%= f.input :state, label: "Estado", required: true %>
     <%= f.input :phone, label: "Telefone", required: true %>
-    <%= f.input :adopter, input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
+    <%= f.input :adopter, label: "Você deseja adotar?", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
     </div>
 
-    <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
-       <div class="name d-flex justify-content-between">
-       <div class="col-3 mr-3" >
-       <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
-       </div>
-       <div class="col-3 mr-3">
-       <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
-       </div>
-       <div class="col-3 mr-3">
-       <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
-       </div>
-       <div class="col-3">
-       <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato']%>
-       </div>
-       </div>
-
       <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
-        <div class="name d-flex justify-content-between">
+        <p class="title text-center mt-0 mb-0">Ótimo! Como seria seu animal ideal?</p>
+          <div class="name d-flex justify-content-between">
           <div class="col-3" >
             <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
           </div>
