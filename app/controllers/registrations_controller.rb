@@ -16,7 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.adopter == true
       matchs_path
     else
-      user_path(resource)
+      dashboard_path
     end
   end
 end

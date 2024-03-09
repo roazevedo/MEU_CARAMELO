@@ -1,6 +1,4 @@
 class TestimoniesController < ApplicationController
-  before_action :set_user, only: [:new, :create]
-  before_action :set_animal, only: [:new, :create]
   before_action :set_adoption, only: [:new, :create]
   before_action :set_testimony, only: [:edit, :update]
   before_action :authenticate_user!
@@ -37,14 +35,6 @@ class TestimoniesController < ApplicationController
 
   def set_testimony
     @testimony = Testimony.find(params[:id])
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
-  def set_animal
-    @animal = Animal.find(params[:animal_id])
   end
 
   def set_adoption

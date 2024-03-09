@@ -35,18 +35,13 @@ class UsersController < ApplicationController
 
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id])
-    @adoption_form = AdoptionForm.find_by(user_id: current_user.id)
+    @user = current_user
     if @user.update(user_params)
-      if @adoption_form.blank? && @user.adopter == true
-        redirect_to new_adoption_form_path
-      else
-        user_path
-      end
+      redirect_to dashboard_path
     else
       flash.now[:alert] = 'Tivemos um problema ao editar o usuário.'
       @errors = @user.errors.full_messages

@@ -21,8 +21,11 @@
         <%= f.input :state, label: 'Estado', as: :select, collection: @states, placeholder: 'Selecione o Estado', include_blank: true, class:"state ms-3" %>
 
         <%= f.input :story, :as => :text, :input_html => { class: 'test', :cols => 5, :rows => 8 }, label: 'História', placeholder: 'Descreva a história do resgate do seu animal', class:"textarea" %>
-
-        <%= f.button :submit, "Cadastrar animal", class:"btn btn-dark-green"%>
+        <% if @animal.new_record? %>
+          <%= f.button :submit, "Cadastrar animal", class:"btn btn-dark-green" %>
+        <% else %>
+          <%= f.button :submit, "Atualizar", class:"btn btn-dark-green" %>
+        <% end %>
       <% end %>
     </div>
   </div>

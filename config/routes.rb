@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "matchs", to: "matchs#show"
 
   root to: "pages#home"
-  get "users/:id/dashboard", to: "pages#dashboard", as: :dashboard
+  get "dashboard", to: "pages#dashboard", as: :dashboard
 
 
 
@@ -36,14 +36,18 @@ Rails.application.routes.draw do
   patch "adoptions/:id/update_status", to: "adoptions#update_status", as: :update_status
   patch "adoptions/:id/update_done", to: "adoptions#done", as: :done
 
-  resources :adoption_forms, only: [:index, :show, :new, :create, :edit, :update]
+  resources :adoption_forms, except: [:destroy]
 
-  resources :animals
-  resources :users do
-    resources :animals do
-      resources :adoptions, only: [:index, :show, :new, :create, :edit, :update] do
-        resources :testimonies, only: [:index, :new, :create, :show, :edit, :update]
-      end
-    end
+  resources :animals, shallow: true do
+    resources :adoptions, except: [:destroy]
+
   end
+
+  resources :adoptions, shallow: true, except: [:destroy] do
+    resources :testimonies, except: [:destroy]
+  end
+
+  resources :users, only: [:show]
+    get "edit_user", to: "users#edit", as: :edit_user
+    patch "update_user", to: "users#update", as: :update_user
 end

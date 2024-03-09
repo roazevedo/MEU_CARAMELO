@@ -1,5 +1,5 @@
 <div class="container mb-4">
-  <%= link_to "Adicionar animal", new_user_animal_path(current_user), class: "nav-link btn btn-dark-green mb-4 add-animal" %>
+  <%= link_to "Adicionar animal", new_animal_path, class: "nav-link btn btn-dark-green mb-4 add-animal" %>
   <div class="row d-flex align-items-between mx-3">
     <% @animals.each do |animal| %>
       <% if current_user.id == animal.user.id && animal.present?%>

@@ -1,7 +1,7 @@
 class AdoptionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_animal, only: [:index, :new, :create,:show]
   before_action :set_adoption, only: [:show, :edit, :update, :done, :update_status, :done]
+  before_action :set_animal, only: [:index, :new, :create,:show]
 
   def my_applications
     @adoption = Adoption.where('user_id = ? AND animal_id IN (?)', current_user.id, current_user.animals.pluck(:id))
@@ -18,7 +18,6 @@ class AdoptionsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @adoption = Adoption.new
   end
 
@@ -31,9 +30,9 @@ class AdoptionsController < ApplicationController
     @adoption_created = true
 
     if @adoption.save
-      redirect_to user_animal_adoption_path(user_id: @adoption.user.id, animal_id: @adoption.animal.id, id: @adoption.id), notice: 'adoption created successfully!'
+      redirect_to adoption_path(@adoption), notice: 'Adoção criada com sucesso!'
     else
-      render :new, status: :unprocessable_entity, notice: 'Unable to begin adoption.'
+      render :new, status: :unprocessable_entity, notice: 'Não foi possível criar a adoção.'
     end
   end
 
@@ -83,7 +82,8 @@ class AdoptionsController < ApplicationController
   end
 
   def set_animal
-    @animal = Animal.find(params[:animal_id])
+    animal_id = params[:animal_id] || @adoption&.animal_id
+    @animal = Animal.find(animal_id)
   end
 
   def set_adoption
