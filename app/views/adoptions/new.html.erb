@@ -13,8 +13,8 @@
     <%= simple_form_for [@animal, @adoption] do |f| %>
       <%= f.input :date, as: :date, label: 'Data da adoção:', start_year: Date.today.year, end_year: Date.today.year + 1 %>
       <%= f.button :submit, "Agendar", class:"btn-yellow" %>
+      <%= link_to 'Voltar', animal_path(@animal), class:"btn-orange-outline" %>
     <% end %>
-    <%= link_to 'Voltar', animal_path(@animal), class:"btn-orange-outline" %>
   </div>
 </div>
 
