@@ -1,11 +1,12 @@
 <div class="container mb-4"> <!-- Add CSS class to the container -->
+  <div class="row d-flex align-items-between mx-3">
     <% if current_user.adopter? %> <!-- Se o usuário for adotante -->
       <% if @adoptions.present? && @adoptions.any? %>
         <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
         <div class="row d-flex align-items-between mx-3">
           <% if adopter_adoptions.present? %>
             <% adopter_adoptions.each do |adoption| %>
-              <div class="col-sm-3 mb-4">
+              <div class="col-sm-3 mb-5 mt-5">
                 <div class="card-index mx-auto my-auto">
                   <div class="position-relative">
                     <% if adoption.animal.photo.attached? %>
@@ -55,7 +56,7 @@
         <div class="row d-flex align-items-between mx-3">
           <% if owner_adoptions.present? %>
             <% owner_adoptions.each do |adoption| %>
-              <div class="col-sm-3 mb-4">
+              <div class="col-sm-3 mb-5 mt-5">
                 <div class="card-index mx-auto my-auto">
                   <div class="position-relative">
                     <% if adoption.animal.photo.attached? %>
@@ -98,4 +99,5 @@
         </div>
       <% end %>
     <% end %>
+  </div>
 </div>

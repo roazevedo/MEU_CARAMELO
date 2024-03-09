@@ -1,18 +1,24 @@
-<div class="container">
-  <div class="customer d-flex flex-wrap">
+<div class="container mb-4">
+  <div class="row d-flex align-items-between mx-5">
     <% if @adoptions.present? && @adoptions.any? && current_user.id == @animal.user %>
     <% owner_adoptions = @adoptions.select { |adoption| current_user.id == adoption.animal.user.id } %>
 
       <% if owner_adoptions.present? %>
         <% owner_adoptions.each do |adoption| %>
         <%# <div class="card-contracts p-4 mx-auto"> %>
-          <div class="card m-2" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
+          <div class="col-sm-3 mb-4">
+            <div class="card-index mx-auto my-auto">
+              <div class="position-relative">
+                <% if animal.photo.attached? %>
+                  <%= cl_image_tag animal.photo.key, width: 240, height: 240, crop: :fill %>
+                <% else %>
+                  <%= image_tag "CRMLO.png", width: 240, height: 240 %>
+                <% end %>
+
             <%# <p class="title pt-2 border-bottom mb-3"><strong><%= "Nome do animal: "%> <%# </strong> <%= "#{adoption.animal.name}" %> <%# </p> %>
-              <h5 class="card-title"><strong><%= "#{adoption.animal.name}" %></strong></h5>
-              <p><%= "#{adoption.animal.user.city}/#{adoption.animal.user.state}" %></p>
-              <p><%= "Tutor: " %><%= "#{adoption.animal.user.first_name} #{adoption.animal.user.last_name}" %></p>
+                  <h5 class="card-title"><strong><%= "#{adoption.animal.name}" %></strong></h5>
+                  <p><%= "#{adoption.animal.user.city}/#{adoption.animal.user.state}" %></p>
+                  <p><%= "Tutor: " %><%= "#{adoption.animal.user.first_name} #{adoption.animal.user.last_name}" %></p>
               <%#<p><strong><%= "Espécie: " %><%#</strong> <%= "#{adoption.animal.specie}" %></p>
               <%#<p><strong><%= "Idade: " %><%#</strong> <%= "#{adoption.animal.age}" %></p>
               <%#<p><strong><%= "Porte: " %><%#</strong> <%= "#{adoption.animal.size}" %></p>
@@ -22,15 +28,17 @@
               <%#<p><strong><%= "História: " %><%#</strong> <%= "#{adoption.animal.story}" %></p>
               <%#<p><strong><%= "Data: " %><%#</strong> <%= "#{adoption.date.strftime("%d/%m/%Y")}" %></p>
 
-              <% if adoption.status == 'Pending' %>
-                <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
-              <% elsif adoption.status == 'Accepted' %>
-                <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-success text-success"><%= "#{adoption.status}" %></p></p>
-              <% else %>
-                <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
-              <% end %>
+                  <% if adoption.status == 'Pending' %>
+                    <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
+                  <% elsif adoption.status == 'Accepted' %>
+                    <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-success text-success"><%= "#{adoption.status}" %></p></p>
+                  <% else %>
+                    <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
+                  <% end %>
 
-              <%= link_to "Ver mais detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+                  <%= link_to "Ver mais detalhes", user_animal_adoption_path(user_id: adoption.user.id, animal_id: adoption.animal.id, id: adoption.id), class:'btn-yellow-outline w-100' %>
+
+              </div>
             </div>
           </div>
         <% end %>
