@@ -19,18 +19,18 @@ class UsersController < ApplicationController
     @user.adopter = true if params[:user][:adopter] == "true"
     # If the user is saved successfully, redirect to the user's show page
 
-    if @user.save
-      if @user.adopter == true
-        redirect_to matchs_path(current_user)
-      else
-        redirect_to root_path
-      end
-    else
-      # If the user isn't saved successfully, re-render the form so the user can fix the problems
-      flash.now[:alert] = 'Tivemos um problema ao criar o usuário.'
-      @errors = @user.errors.full_messages
-      render 'new'
-    end
+    # if @user.save
+    #   if @user.adopter == true
+    #     redirect_to matchs_path(current_user)
+    #   else
+    #     redirect_to root_path
+    #   end
+    # else
+    #   # If the user isn't saved successfully, re-render the form so the user can fix the problems
+    #   flash.now[:alert] = 'Tivemos um problema ao criar o usuário.'
+    #   @errors = @user.errors.full_messages
+    #   render 'new'
+    # end
   end
 
 
