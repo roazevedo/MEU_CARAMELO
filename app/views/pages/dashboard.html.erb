@@ -1,18 +1,18 @@
 <% if user_signed_in? && current_user.adopter? %>
   <div class="container">
-    <div class="dash my-5">
-      <div data-controller="show-dashboard">
-        <div class="row mx-auto">
+    <div data-controller="show-dashboard">
+      <div class="row mx-auto">
 
-          <div class="col-sm dashboard-card">
-            <button class="caramel-button py-2" id="profile-btn" data-action="click->show-dashboard#profile">
+         <div class="dash my-5 d-flex flex-row justify-content-between">
+          <div class="col-sm dashboard-card text-center">
+            <button class="caramel-button-s py-2" id="profile-btn" data-action="click->show-dashboard#profile">
               <div class="card-info">
                 <h5>Editar Perfil</h5>
               </div>
             </button>
           </div>
 
-          <div class="col-sm dashboard-card">
+          <div class="col-sm dashboard-card text-center">
             <button class="caramel-button py-2" id="adoption-btn" data-action="click->show-dashboard#adoptions">
               <div class="card-info">
                 <h5>Minhas adoções</h5>
@@ -20,7 +20,7 @@
             </button>
           </div>
 
-          <div class="col-sm dashboard-card">
+          <div class="col-sm dashboard-card text-center">
             <button class="caramel-button py-2" id="animal-btn" data-action="click->show-dashboard#animals">
               <div class="card-info">
                 <h5>Meus animais favoritos</h5>
@@ -35,7 +35,7 @@
             <div class="col-sm">
 
               <div data-show-dashboard-target="profileElement" class="mt-0 mb-5 px-5 d-none">
-              <p class="second-title">Edite seu perfil</p>
+              <p class="second-title-dash">Edite seu perfil</p>
                 <%= simple_form_for @user do |f| %>
                   <%= f.input :first_name, label: "Nome", required: true %>
                   <%= f.input :last_name, label: "Sobrenome", required: true %>
@@ -58,7 +58,7 @@
               </div>
 
               <div data-show-dashboard-target="animalElement" class="mt-0 mb-5 d-none">
-                <%= '#' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+                <%= 'Adicionar rota' %> <!-- FALTA COLOCAR O RENDER AQUI -->
               </div>
             </div>
 
