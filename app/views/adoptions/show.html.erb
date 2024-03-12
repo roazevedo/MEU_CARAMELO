@@ -1,5 +1,6 @@
 <!-- pagina de 'match' da adoção logo após o cadastro -->
 <div class="container my-3">
+<p class="navigation mb-1 mt-5"><%= link_to "Home", "/", class:"navigation" %> / <%= link_to "Minhas adoções", dashboard_path(@adoption), class:"navigation" %> / Detalhes</p>
   <% if defined?(@adoption_created) && @adoption_created %>
     <h1>DEU MATCH</h1>
 
@@ -7,20 +8,36 @@
     <h4>Em breve entraremos em contato com você na data escolhida para que possamos conversar um pouco mais.</h4>
   <% end %>
 
-    <div class="border border-1 p-3">
+    <h2 class="second-title mb-4">Detalhes da Aplicação</h2>
+    <div class="px-3 pb-3">
+      <div class="card-show d-flex mb-5 mx-auto">
+        <div>
+          <% if @animal.photo.attached? %>
+            <%= cl_image_tag @animal.photo.key, width: 550, height: 550, crop: :fill %>
+          <% else %>
+            <%= image_tag "CRMLO.png", width: 550, height: 550 %>
+          <% end %>
+        </div>
 
-      <h1>Detalhes da Aplicação</h1>
-      <p><strong><%= "Interessado(a): " %></strong><%= "#{@adoption.user.first_name} #{@adoption.user.last_name}" %></p>
-      <p><strong><%= "E-mail de #{@adoption.user.first_name}: " %></strong><%= "#{@adoption.user.email}" %></p>
-      <p><strong><%= "Animal: " %></strong><%= "#{@adoption.animal.name}" %></p>
-      <p><strong><%= "Tutor(a): " %></strong><%= "#{@adoption.animal.user.first_name} #{@adoption.animal.user.last_name}" %></p>
-      <p><strong><%= "E-mail de #{@adoption.animal.user.first_name}: " %></strong><%= "#{@adoption.animal.user.email}" %></p>
-      <p><strong><%= "Espécie: " %></strong> <%= "#{@adoption.animal.specie}" %></p>
-      <p><strong><%= "Idade: " %></strong><%= "#{@adoption.animal.age}" %></p>
-      <p><strong><%= "Porte: " %></strong><%= "#{@adoption.animal.size}" %></p>
-      <p><strong><%= "Gênero: " %></strong><%= "#{@adoption.animal.gender}" %></p>
-      <p>
-          <% if @adoption.animal.vaccination && @animal.gender == 'Macho' %>
+        <div class="animal-info py-4 px-5 d-flex flex-column">
+          <h2 class="title"><%= "#{@adoption.animal.name}" %></h2>
+          <p><strong><%= "Interessado(a): " %></strong><%= "#{@adoption.user.first_name} #{@adoption.user.last_name}" %></p>
+          <p><strong><%= "E-mail de #{@adoption.user.first_name}: " %></strong><%= "#{@adoption.user.email}" %></p>
+          <p><strong><%= "Tutor(a): " %></strong><%= "#{@adoption.animal.user.first_name} #{@adoption.animal.user.last_name}" %></p>
+          <p><strong><%= "E-mail de #{@adoption.animal.user.first_name}: " %></strong><%= "#{@adoption.animal.user.email}" %></p>
+
+           <div class="info my-3">
+          <% if @animal.specie === "Gato" %>
+            <p><i class="fa-solid fa-cat me-1"></i><%= @animal.specie %></p>
+          <% else %>
+            <p><i class="fa-solid fa-dog me-1"></i><%= @animal.specie %></p>
+          <% end %>
+
+          <p><i class="fa-solid fa-baby-carriage"></i> <%= @animal.age %> </p>
+          <p><i class="fa-solid fa-ruler-combined"></i> Porte <%= @animal.size %></p>
+          <p><i class="fa-solid fa-venus-mars"></i> <%= @animal.gender %></p>
+
+          <% if @animal.vaccination && @animal.gender == 'Macho' %>
             <p><i class="fa-solid fa-check"></i> Vacinado</p>
             <% elsif @animal.vaccination == false && @animal.gender == 'Macho' %>
             <p><i class="fa-solid fa-xmark"></i> Não vacinado</p>
@@ -28,8 +45,7 @@
             <p><i class="fa-solid fa-check"></i> Vacinada</p>
             <% elsif @animal.vaccination == false && @animal.gender == 'Fêmea' %>
             <p><i class="fa-solid fa-xmark"></i> Não vacinada</p>
-          <% end %></p>
-      <p>
+          <% end %>
           <% if @animal.neutered && @animal.gender == 'Macho' %>
             <p><i class="fa-solid fa-check"></i> Castrado</p>
             <% elsif @animal.neutered == false && @animal.gender == 'Macho' %>
@@ -38,26 +54,33 @@
             <p><i class="fa-solid fa-check"></i> Castrada</p>
             <% elsif @animal.neutered == false && @animal.gender == 'Fêmea' %>
             <p><i class="fa-solid fa-xmark"></i> Não castrada</p>
-          <% end %></p>
-      <p><strong><%= "História: " %></strong><%= "#{@adoption.animal.story}" %></p>
-      <p><strong><%= "Data da adoção: " %></strong> <%= "#{@adoption.date.strftime("%d/%m/%Y")}" %></p>
-      <p><strong><%= "Status: " %></strong><%= "#{@adoption.status}" %></p>
-
-      <% if current_user.adopter == false && @adoption.status == "Pendente" %>
-        <div class="d-flex align-items-center mt-2">
-          <p class="my-auto"><strong class="contract-bold"><%= "O interessado(a) está apto(a) a ser o novo tutor(a) de " %><%= @adoption.animal.name %>?</strong></p>
-          <%= button_to 'Sim', update_status_path(id: @adoption.id, status: 'Aceito'), method: :patch, data: { "turbo-method": :patch }, class: "btn-green mx-2" %>
-          <%= button_to 'Não', update_status_path(id: @adoption.id, status: 'Recusado'), method: :patch, data: { "turbo-method": :patch }, class: "btn-red" %>
+          <% end %>
         </div>
-      <% end %>
 
-      <% if current_user.adopter? && @adoption.status == "Aceito" %>
-        <%= link_to 'Conte-nos sua experiência', new_adoption_testimony_path(@adoption), class:'btn-yellow-outline' %>
-      <% end %>
+          <h4><strong><%= "Data para entrega do pet: " %></strong> <%= "#{@adoption.date.strftime("%d/%m/%Y")}" %></h4>
 
+          <div class="status">
+            <% if @adoption.status == 'Pendente' %>
+              <h4 class="d-inline-flex"><strong class='my-auto'>Status: </strong><span class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= @adoption.status %></span></h4>
+            <% elsif @adoption.status == 'Aceito' %>
+              <h4 class="d-inline-flex"><strong class='my-auto'>Status: </strong><span class="d-inline-flex p-1 ms-1 border border-success text-success"><%= @adoption.status %></span></h4>
+            <% elsif @adoption.status == 'Recusado' %>
+              <h4 class="d-inline-flex"><strong class='my-auto'>Status: </strong><span class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= @adoption.status %></span></h4>
+            <% end %>
+          </div>
+
+          <% if current_user.adopter == false && @adoption.status == "Pendente" %>
+            <div class="d-flex align-items-center mt-2">
+              <p class="my-auto"><strong class="contract-bold"><%= "O interessado(a) está apto(a) a ser o novo tutor(a) de " %><%= @adoption.animal.name %>?</strong></p>
+              <%= button_to 'Sim', update_status_path(id: @adoption.id, status: 'Aceito'), method: :patch, data: { "turbo-method": :patch }, class: "btn-green mx-2" %>
+              <%= button_to 'Não', update_status_path(id: @adoption.id, status: 'Recusado'), method: :patch, data: { "turbo-method": :patch }, class: "btn-red" %>
+            </div>
+          <% end %>
+
+          <% if current_user.adopter? && @adoption.status == "Aceito" %>
+            <%= link_to 'Conte-nos sua experiência', new_adoption_testimony_path(@adoption), class:'btn-yellow-outline' %>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-
-  <!-- fazer botão para todos os 'matches' (index animals) -->
-  <%= link_to 'Voltar ao meu perfil', dashboard_path(@adoption), class:"btn btn-dark-green" %>
 </div>

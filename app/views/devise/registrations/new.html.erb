@@ -25,31 +25,29 @@
           <%= f.input :city, label: "Cidade", required: true %>
           <%= f.input :state, label: 'Estado', as: :select, collection: @states, placeholder: 'Selecione o Estado', include_blank: true, class:"state ms-3", required: true %>
           <%= f.input :phone, label: "Telefone", required: true %>
-          <%= f.input :adopter, label: "Você deseja adotar?", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
+          <%= f.input :adopter, label: "Quero adotar", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" }, disabled: true } %>
         </div>
 
-        <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
-          <p class="title text-center mt-0 mb-0">Ótimo! Como seria seu animal ideal?</p>
-           <div class="name d-flex justify-content-between">
-          <div class="col-3" >
-            <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
-          </div>
-          <div class="col-3 mx-1">
-            <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
-          </div>
-          <div class="col-2.5">
-            <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
-          </div>
-          <div class="col-3.5  mx-1">
-            <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato']%>
-          </div>
-        </div>
-
+       <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
+        <p class="title-form text-center mt-0 mb-3">Como seria seu animal ideal?</p>
           <div class="name d-flex justify-content-between">
-            <%= f.input :vaccination, label: "Vacinado?" %>
-            <%= f.input :neutered, label: "Castrado?" %>
+            <div class="w-50" >
+              <%= f.input :age, label: "Idade", collection: ['Filhote', 'Adulto', 'Idoso'] %>
+              <%= f.input :size, label: "Porte", collection: ['Pequeno', 'Médio', 'Grande'] %>
+            </div>
+
+            <div class="w-50 ms-3">
+              <%= f.input :gender, label: "Genero", collection: ['Macho', 'Femea'] %>
+              <%= f.input :specie, label: "Especie", collection: ['Cachorro', 'Gato']%>
+            </div>
           </div>
-        </div>
+
+          <div class="edit-form d-flex">
+            <%= f.input :vaccination, label: 'Vacinado', as: :boolean, input_html: { class: "toggle" } %>
+            <%= f.input :neutered, label: 'Castrado', as: :boolean, input_html: { class: "toggle" } %>
+          </div>
+      </div>
+
       </div>
       <div class="container">
         <div class="form-actions">

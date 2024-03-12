@@ -3,11 +3,14 @@
     <% if current_user.adopter? %> <!-- Se o usuário for adotante -->
       <% if @adoptions.present? && @adoptions.any? %>
         <% adopter_adoptions = @adoptions.select { |adoption| current_user.id == adoption.user.id } %>
+
         <div class="row d-flex align-items-between mx-3">
           <% if adopter_adoptions.present? %>
+
             <% adopter_adoptions.each do |adoption| %>
               <div class="col-sm-3 mb-5 mt-5">
                 <div class="card-index mx-auto my-auto">
+
                   <div class="position-relative">
                     <% if adoption.animal.photo.attached? %>
                       <%= cl_image_tag adoption.animal.photo.key, width: 240, height: 240, crop: :fill %>
@@ -21,6 +24,7 @@
                       <h3 class="mb-0"><%= "#{adoption.animal.name}" %></h3>
                       <p class="mb-0"><%= "Tutor(a): " %><%= "#{adoption.animal.user.first_name} #{adoption.animal.user.last_name}" %></p>
                       <p class="mb-0"><%= "#{adoption.animal.user.city}/#{adoption.animal.user.state}" %></p>
+
                       <div class="my-icons">
                         <% if adoption.status == 'Pendente' %>
                           <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-warning text-warning"><%= "#{adoption.status}" %></p></p>
@@ -30,9 +34,10 @@
                           <p class="d-inline-flex"><strong><%= "Status: "%></strong><p class="d-inline-flex p-1 ms-1 border border-danger text-danger"><%= "#{adoption.status}" %></p></p>
                         <% end %>
 
-                        <%= link_to "Ver mais detalhes", adoption_path(adoption), class:'btn-yellow-outline w-100' %>
-                        <%= link_to "Visualizar perfil", user_path(adoption.animal.user.id), class: 'btn-yellow-outline w-100' %>
+                        <%= link_to "Detalhes", adoption_path(adoption), class:'btn-dark-green w-100 mb-2' %>
+                        <%= link_to "Visualizar perfil", user_path(adoption.animal.user.id), class: 'btn-dark-green-outline w-100' %>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
