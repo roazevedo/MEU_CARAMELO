@@ -2,7 +2,9 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    @animals = Animal.all # ACRESCENTADO PARA TESTE
+    @animals = Animal.all
+    #@testimonies = Testimony.order("RANDOM()").limit(10)
+    @testimonie = Testimony.all
   end
 
   def dashboard
