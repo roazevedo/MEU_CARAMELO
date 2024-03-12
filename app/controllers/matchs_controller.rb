@@ -7,7 +7,7 @@ class MatchsController < ApplicationController
     @matches = []
 
     @animals.each do |animal|
-      match_data = match(@user, animal)
+      match_data = match(@user,  animal)
       if match_data && match_data[:score] > 0
         @matches << { animal: animal, match_data: match_data }
       end
@@ -15,8 +15,9 @@ class MatchsController < ApplicationController
   end
 
 
-  def match(user, animal)
-    if user.specie == animal.specie
+  def match(user,  animal)
+    @adoption = Adoption.find_by(animal_id: animal.id)
+    if @adoption.status != 'Aceito' && user.specie == animal.specie
     match_data = {
       size_match: user.size == animal.size,
       specie_match: user.specie == animal.specie,
