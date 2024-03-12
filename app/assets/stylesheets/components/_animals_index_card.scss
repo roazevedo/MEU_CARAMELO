@@ -4,6 +4,13 @@
     color: $dark-caramel;
 }
 
+.title-form {
+    font-family: $base-font;
+    font-weight: bold;
+    color: $dark-caramel;
+    font-size: 25px;
+}
+
 .navigation {
     text-decoration: none;
     color: $dark-caramel;
@@ -15,7 +22,7 @@
 }
 
 .card-index {
-    height: 440px;
+    height: 380x;
     width: 240px;
     .image {
         height: 240px;
