@@ -17,7 +17,17 @@ class MatchsController < ApplicationController
 
   def match(user,  animal)
     @adoption = Adoption.find_by(animal_id: animal.id)
-    if @adoption.status != 'Aceito' && user.specie == animal.specie
+    if @adoption && @adoption.status != 'Aceito' && user.specie == animal.specie
+    match_data = {
+      size_match: user.size == animal.size,
+      specie_match: user.specie == animal.specie,
+      gender_match: user.gender == animal.gender,
+      age_match: user.age == animal.age,
+      vaccination_match: user.vaccination == animal.vaccination,
+      neutered_match: user.neutered == animal.neutered
+    }
+    match_data[:score] = match_data.values.count(true)
+    elsif user.specie == animal.specie
     match_data = {
       size_match: user.size == animal.size,
       specie_match: user.specie == animal.specie,

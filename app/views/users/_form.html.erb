@@ -10,7 +10,7 @@
       <%= f.input :city, label: "Cidade", required: true %>
       <%= f.input :state, label: "Estado", required: true %>
       <%= f.input :phone, label: "Telefone", required: true %>
-      <%= f.input :adopter, label: "Quero adotar", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" }, disabled: true } %>
+      <%= f.input :adopter, label: "Quero adotar", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
     </div>
 
       <div class="tab-pane" id="preferencias" data-target="tab.preferencias">
