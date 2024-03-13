@@ -1,7 +1,6 @@
 require 'csv'
 class AnimalsController < ApplicationController
   def index
-
     # if current_user && current_user.adopter?
     @animals = Animal.all
     # else
