@@ -57,7 +57,15 @@
               </div>
 
               <div data-show-dashboard-target="animalElement" class="mt-0 mb-5 d-none">
+<<<<<<< Updated upstream
                 <%= 'Adicionar rota' %> <!-- FALTA COLOCAR O RENDER AQUI -->
+=======
+                <%#<% if @bookmarks %>
+                  <%= render 'bookmarks/index' %>
+                <%#<% else %>
+                  <%#<h3>Você ainda não tem nenhum animal favorito.</h3>
+                <% end %>
+>>>>>>> Stashed changes
               </div>
             </div>
 
@@ -119,13 +127,15 @@
                 <% end %>
               </div>
 
-              <div data-show-dashboard-target="adoptionElement" class="mt-0 mb-5 d-none">
-                  <% if @adoptions %>
-                    <%= render 'adoptions/my_applications' %> <!-- FALTA COLOCAR O RENDER AQUI -->
-                  <% else %>
-                    <h3>Não há nenhum interessado em seus animais.</h3>
-                  <% end %>
-              </div>
+              <%#<div data-show-dashboard-target="adoptionElement" class="mt-0 mb-5 d-none">%>
+                  <div>
+                    <% if @adoptions %>
+                      <%= render 'adoptions/my_applications' %>
+                    <% else %>
+                      <h3>Não há nenhum interessado em seus animais.</h3>
+                    <% end %>
+                  </div>
+              <%#</div>%>
 
               <div data-show-dashboard-target="animalElement" class="mt-0 mb-5 d-none">
                 <% if @animals %>

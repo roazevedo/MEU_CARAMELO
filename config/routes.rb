@@ -40,8 +40,12 @@ Rails.application.routes.draw do
 
   resources :animals, shallow: true do
     resources :adoptions, except: [:destroy]
-
   end
+
+  # get 'favorites', to: 'bookmarks#favorites', as: 'favorites'
+  get 'bookmarks', to: 'bookmarks#index', as: 'index'
+  post 'bookmarks', to: 'bookmarks#create', as: 'bookmarks'
+  delete 'bookmarks/:id', to: 'bookmarks#destroy', as: 'bookmark'
 
   resources :adoptions, shallow: true, except: [:destroy] do
     resources :testimonies, except: [:destroy]

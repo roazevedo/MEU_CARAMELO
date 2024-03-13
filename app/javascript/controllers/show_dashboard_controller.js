@@ -19,13 +19,14 @@ export default class extends Controller {
         this.adoptionElementTarget.classList.add("d-none")
         this.profileElementTarget.classList.add("d-none")
         this.animalElementTarget.classList.remove("d-none")
+        console.log("hello from animals")
     }
 
     adoptions() {
         this.animalElementTarget.classList.add("d-none")
         this.profileElementTarget.classList.add("d-none")
         this.adoptionElementTarget.classList.remove("d-none")
-
+        console.log("hello from adoptions")
     }
 
 }

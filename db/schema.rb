@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_212055) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_09_182545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_212055) do
     t.index ["user_id"], name: "index_animals_on_user_id"
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "animal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_bookmarks_on_animal_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "testimonies", force: :cascade do |t|
     t.bigint "adoption_id", null: false
     t.string "content"
@@ -125,5 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_212055) do
   add_foreign_key "adoptions", "animals"
   add_foreign_key "adoptions", "users"
   add_foreign_key "animals", "users"
+  add_foreign_key "bookmarks", "animals"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "testimonies", "adoptions"
 end
