@@ -7,8 +7,8 @@
     </p>
 
     <div class="d-flex mt-3">
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% else %>
         <%= image_tag "cat.jpg", class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% end %>
@@ -22,7 +22,7 @@
       <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %>
     </div>
 
-  <% elsif user_signed_in? && @user.adopter? == false %> <%#se o usuário estiver logado e o user que ele clica for um doador %>
+  <% elsif user_signed_in? && @user.adopter? != true %> <%#se o usuário estiver logado e o user que ele clica for um doador %>
     <p class="navigation mb-1 mt-5">
       <%= link_to "Home", "/", class:"navigation" %> /
       <%= link_to "Animais para adoção", animals_path, class:"navigation" %> /
@@ -30,8 +30,8 @@
     </p>
 
     <div class="d-flex w-100 mt-3 px-4">
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% else %>
         <%= image_tag "cat.jpg", class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% end %>
