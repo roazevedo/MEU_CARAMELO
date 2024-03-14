@@ -8,13 +8,17 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
-
     if @bookmark.save
-      redirect_to animals_path, notice: "Animal favoritado com sucesso!"
+      if params[:from_page] == "matchs"
+        redirect_to matchs_path, notice: "Animal favoritado com sucesso!"
+      else
+        redirect_to animals_path, notice: "Animal favoritado com sucesso!"
+      end
     else
       redirect_to animals_path, alert: "Falha ao favoritar o animal."
     end
   end
+
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
