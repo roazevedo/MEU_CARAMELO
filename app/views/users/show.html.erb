@@ -19,6 +19,10 @@
         <p><i class="fa-solid fa-phone"></i> <%= @user.email %></p>
       </div>
 
+      <div>
+      <%= render 'bookmarks/index' %>
+      </div>
+
       <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green" %>
     </div>
 
