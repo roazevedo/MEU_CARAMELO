@@ -48,7 +48,11 @@
 
         <div class="d-flex mt-5">
           <h2 class="h2-info"><strong><%= @user.animals.count %></strong> animais divulgados</h2>
-          <h2 class="h2-info ms-5"><strong><%= @user.adoptions.count %></strong> animais adotados</h2>
+          <% adoptions_count = @user.adoptions.where(status: "Aceito").count %>
+
+          <% accepted_animals = @user.animals.joins(:adoptions).where(adoptions: { status: "Aceito" }) %>
+          <% count = accepted_animals.count %>
+          <h2 class="h2-info ms-5"><strong><%= count %></strong> animais adotados</h2>
         </div>
       </div>
 
