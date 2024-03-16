@@ -35,17 +35,7 @@
             <div class="col-sm">
 
               <div data-show-dashboard-target="profileElement" class="mt-0 mb-5 px-5 d-none">
-              <p class="second-title-dash">Edite seu perfil</p>
-                <%= simple_form_for @user do |f| %>
-                  <%= f.input :first_name, label: "Nome", required: true %>
-                  <%= f.input :last_name, label: "Sobrenome", required: true %>
-                  <%= f.input :photo, label: "Foto do Perfil", as: :file %>
-                  <%= f.input :city, label: "Cidade", required: true %>
-                  <%= f.input :state, label: "Estado", required: true %>
-                  <%= f.input :phone, label: "Telefone", required: true %>
-
-                  <%= f.button :submit, "Salvar", class:"btn-yellow" %>
-                <% end %>
+                  <%= render 'users/show' %>
               </div>
 
               <div data-show-dashboard-target="adoptionElement" class="mt-0 mb-5 d-none">
@@ -109,18 +99,8 @@
 
             <div class="col-sm">
 
-              <div data-show-dashboard-target="profileElement" class="mt-0 mb-5 px-5 d-none">
-              <p class="second-title-dash">Edite seu perfil</p>
-                <%= simple_form_for @user do |f| %>
-                  <%= f.input :first_name, label: "Nome", required: true %>
-                  <%= f.input :last_name, label: "Sobrenome", required: true %>
-                  <%= f.input :photo, label: "Foto do Perfil", as: :file %>
-                  <%= f.input :city, label: "Cidade", required: true %>
-                  <%= f.input :state, label: "Estado", required: true %>
-                  <%= f.input :phone, label: "Telefone", required: true %>
-
-                  <%= f.button :submit, "Salvar", class:"btn-yellow" %>
-                <% end %>
+              <div data-show-dashboard-target="profileElement" class="">
+                <%= render 'users/show' %>
               </div>
 
               <div data-show-dashboard-target="adoptionElement" class="mt-0 mb-5 d-none">

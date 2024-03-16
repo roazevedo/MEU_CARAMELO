@@ -1,10 +1,5 @@
 <div class="container">
    <% if user_signed_in? && @user.adopter? %> <%#se o usuário estiver logado e o user que ele clica for um adotante %>
-    <p class="navigation mb-1 mt-5">
-      <%= link_to "Home", "/", class:"navigation" %> /
-      <%= link_to "Animais para adoção", animals_path, class:"navigation" %> /
-      <%= @user.first_name %> <%= @user.last_name %>
-    </p>
 
     <div class="d-flex mt-3">
       <% if @user.photo.attached? %>
@@ -27,11 +22,6 @@
     </div>
 
   <% elsif user_signed_in? && @user.adopter? != true %> <%#se o usuário estiver logado e o user que ele clica for um doador %>
-    <p class="navigation mb-1 mt-5">
-      <%= link_to "Home", "/", class:"navigation" %> /
-      <%= link_to "Animais para adoção", animals_path, class:"navigation" %> /
-      <%= @user.first_name %> <%= @user.last_name %>
-    </p>
 
     <div class="d-flex w-100 mt-3 px-4">
       <% if @user.photo.attached? %>
