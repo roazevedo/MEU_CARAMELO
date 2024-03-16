@@ -1,6 +1,8 @@
 <% @bookmarks = Bookmark.where(user_id: current_user.id).includes(:animal) %>
 <div class="container mb-4"> <!-- Add CSS class to the container -->
-  <div class="row d-flex align-items-between mx-3">
+
+  <div class="row d-flex align-items-between mx-auto">
+
   <% if @bookmarks.any? %>
     <% @bookmarks.each do |bookmark| %>
 
