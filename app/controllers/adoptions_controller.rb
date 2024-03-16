@@ -13,6 +13,11 @@ class AdoptionsController < ApplicationController
     @adopter_adoptions = Adoption.where(user_id: @user)
     @owner_adoptions = Adoption.where(animal_id: @animal)
 
+    # pro adoption form
+    @adoption = Adoption.find(params[:id])
+    @adoption_form = @adoption.user.adoption_form || AdoptionForm.new
+
+
     # Combine a adoção do adopter e do owner em uma única coleção
     @adoptions = @adopter_adoptions.or(@owner_adoptions)
   end

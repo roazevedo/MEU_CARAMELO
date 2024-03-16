@@ -72,9 +72,11 @@
         <% if @animal.adoptions.present? %>
           <% adoptions = @animal.adoptions %>
           <% if adoptions.any? { |adoption| adoption.status == "Aceito" } %>
-            <div class="bg-dark text-white d-flex justify-content-center align-items-center rounded-3 w-100 p-2">Adotado</div>
+
+            <div class="adopted-btn d-flex justify-content-center align-items-center rounded-3 w-100 p-2">Adotado</div>
           <% elsif adoptions.any? { |adoption| adoption.status == "Pendente" } %>
-            <div class="bg-warning text-white d-flex justify-content-center align-items-center rounded-3 w-100 p-2">Este animal encontra-se em processo de adoção</div>
+            <div class="adopted-btn d-flex justify-content-center align-items-center rounded-3 w-100 p-2">Este animal encontra-se em processo de adoção</div>
+
           <% end %>
         <% else %>
           <% if current_user.adopter? %>

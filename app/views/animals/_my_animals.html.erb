@@ -17,7 +17,7 @@
 
                 <% animal.adoptions.each do |adoption| %>
                   <% if adoption.status == "Aceito" %>
-                    <div class="position-absolute top-0 start-0 w-100 bg-dark text-white d-flex justify-content-center align-items-center p-2">Adotado</div>
+                    <div class="adopted position-absolute top-0 start-0 w-100 d-flex justify-content-center align-items-center p-2">Adotado</div>
                   <% end %>
                 <% end %>
               </div>
