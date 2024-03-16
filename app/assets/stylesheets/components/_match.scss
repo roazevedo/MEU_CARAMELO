@@ -21,3 +21,43 @@
     font-size: 17px;
     font-weight: bold;
 }
+
+.match-btn {
+    width: 250px;
+}
+
+.card-match {
+    height: 380x;
+    width: 350px;
+    .image {
+        height: 350px;
+        width: 350px;
+        object-fit: cover;
+    }
+    .animal-preview {
+        h3 {
+            font-family: $base-font;
+            font-weight: bold;
+            font-size: 20px;
+            color: $dark-caramel;
+        }
+        p {
+            font-family: $base-font;
+            color: $dark-caramel;
+            font-size: 13px;
+        }
+        i {
+            font-size: 15px;
+        }
+    }
+    .info {
+        color: $dark-caramel;
+         :hover {
+            color: $caramel;
+        }
+    }
+    .back-caramelo {
+        background-color: $caramel-grey;
+        box-shadow: 0 4px 4px rgba(0, 0, 0.2, 0.2);
+    }
+}

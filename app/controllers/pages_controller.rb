@@ -14,4 +14,7 @@ class PagesController < ApplicationController
     @testimonies = Testimony.all
     @adoption_form = @user.adoption_form || AdoptionForm.new
   end
+
+  def match
+  end
 end

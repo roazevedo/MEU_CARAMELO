@@ -1,7 +1,7 @@
 class MatchsController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def show
+  def index
     @user = User.find_by(id: current_user)
     @animals = Animal.includes(:adoptions).where(adoptions: { animal_id: nil })
     @matches = []
@@ -14,6 +14,18 @@ class MatchsController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by(id: current_user)
+    @animals = Animal.includes(:adoptions).where(adoptions: { animal_id: nil })
+    @matches = []
+
+    @animals.each do |animal|
+      match_data = match(@user,  animal)
+      if match_data && match_data[:score] > 0
+        @matches << { animal: animal, match_data: match_data }
+      end
+    end
+  end
 
   def match(user,  animal)
     if user.specie == animal.specie

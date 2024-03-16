@@ -8,13 +8,11 @@ Rails.application.routes.draw do
   # get "users/:id/edit", to: "users#edit", as: :edit_user
   # patch "users/:id", to: "users#update"
 
-  get "matchs", to: "matchs#show"
-  get "match", to: "matchs#match"
+  get "matchs", to: "matchs#index"
+  get "match", to: "matchs#show", as: :match
 
   root to: "pages#home"
   get "dashboard", to: "pages#dashboard", as: :dashboard
-
-
 
   # get "adoptionforms/:id", to: "adoptionforms#show", as: :adoptionform
   # get "adoptionforms/new", to: "adoptionforms#new", as: :new_adoptionform
