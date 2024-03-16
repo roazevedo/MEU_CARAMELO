@@ -26,7 +26,22 @@
 
             <div class="icons d-flex">
               <%= link_to "<i class=\"fa-solid fa-circle-info\"></i>".html_safe, animal_path(match[:animal].id), class:"info" %>
-              <%= button_to "<i class=\"fa-solid fa-heart\"></i>".html_safe, bookmarks_path(from_page: "matchs"), method: :post, params: { bookmark: { user_id: current_user.id, animal_id: match[:animal].id } }, style: "background: none; border: none; padding: 0; font: inherit; cursor: pointer;", class: "info ms-1" %>
+
+              <% if current_user.adopter? %>
+                <% if current_user.bookmarks.exists?(animal_id: match[:animal].id) %>
+                  <% bookmark = current_user.bookmarks.find_by(animal_id: match[:animal].id) %>
+                    <%= button_to "<i class='fa-solid fa-heart red-heart'></i>".html_safe,
+                      bookmark_path(bookmark, from_page: "matchs"), method: :delete,
+                      style: "background: none; border: none; padding: 0; font: inherit; cursor: pointer;",
+                      class: "info ms-1 favorite-button" %>
+                <% else %>
+                  <%= button_to "<i class='fa-solid fa-heart'></i>".html_safe,
+                    bookmarks_path(from_page: "matchs"), method: :post, params: { bookmark: { animal_id: match[:animal].id } },
+                    style: "background: none; border: none; padding: 0; font: inherit; cursor: pointer;",
+                    class: "info ms-1 favorite-button" %>
+                <% end %>
+              <% end %>
+
             </div>
           </div>
 
