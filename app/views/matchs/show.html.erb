@@ -19,7 +19,7 @@
             <div class="number position-absolute top-0 start-0 d-flex justify-content-center align-items-center p-2"><%= (match[:match_data][:score].to_f / 6 * 100).round(0) %>%</div>
           </div>
 
-          <div class="back-caramelo d-flex justify-content-between p-4 pb-1">
+          <div class="back-caramelo d-flex justify-content-between p-4 pb-0">
             <div class="animal-preview">
               <h3 class="mb-0"><%= match[:animal].name%></h3>
               <p class="mb-0"><%= match[:animal].city %>/<%= match[:animal].state %></p>
@@ -47,18 +47,22 @@
           </div>
 
           <div class="animal-preview">
-            <div class="back-caramelo d-flex justify-content-between p-2 pb-1">
-                <p class="mb-0">Tamanho: <%= match[:match_data][:size_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
-              <p class="mb-0">Espécie: <%= match[:match_data][:specie_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
-              <p class="mb-0">Gênero: <%= match[:match_data][:gender_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+            <div class="back-caramelo d-flex justify-content-between p-4 pb-1">
+              <p class="mb-0"><i class="fa-solid fa-ruler-combined me-1"></i> <%= match[:match_data][:size_match] ? " <i class=\"fa-solid fa-circle-check green\"></i>".html_safe : " <i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+                <% if match[:animal].specie === "Gato" %>
+                  <p class="mb-0"><i class="fa-solid fa-cat me-1"></i> <%= match[:match_data][:specie_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+                <% else %>
+                  <p class="mb-0"><i class="fa-solid fa-dog me-1"></i> <%= match[:match_data][:specie_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+                <% end %>
+              <p class="mb-0"><i class="fa-solid fa-venus-mars me-1"></i> <%= match[:match_data][:gender_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
             </div>
           </div>
 
           <div class="animal-preview">
-            <div class="back-caramelo d-flex justify-content-between p-2 pt-0">
-              <p class="mb-0">Idade: <%= match[:match_data][:age_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
-              <p class="mb-0">Vacinado: <%= match[:match_data][:vaccination_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
-              <p class="mb-0">Castrado: <%= match[:match_data][:neutered_match] ? " <i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+            <div class="back-caramelo d-flex justify-content-between p-4 pt-0">
+              <p class="mb-0"><i class="fa-solid fa-baby-carriage me-1"></i> <%= match[:match_data][:age_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+              <p class="mb-0"><i class="fa-solid fa-syringe me-1"></i> <%= match[:match_data][:vaccination_match] ? "<i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
+              <p class="mb-0"><i class="fa-solid fa-scissors"></i> <%= match[:match_data][:neutered_match] ? " <i class=\"fa-solid fa-circle-check green\"></i>".html_safe : "<i class=\"fa-solid fa-ban red\"></i>".html_safe %></p>
             </div>
           </div>
         </div>

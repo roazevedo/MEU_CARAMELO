@@ -41,6 +41,9 @@
             color: $dark-caramel;
             font-size: 13px;
         }
+        i {
+            font-size: 15px;
+        }
     }
     .info {
         color: $dark-caramel;
@@ -99,9 +102,9 @@
         .icons {
             font-size: 25px;
             .edit {
-                color: $caramel;
+                color: #ffc800;
                  :hover {
-                    color: $dark-caramel;
+                    color: #f3be00;
                 }
             }
             .delete {
