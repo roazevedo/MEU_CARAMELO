@@ -21,6 +21,8 @@
                 <% animal.adoptions.each do |adoption| %>
                   <% if adoption.status == "Aceito" %>
                     <div class="position-absolute top-0 start-0 w-100 bg-dark text-white d-flex justify-content-center align-items-center p-2">Adotado</div>
+                  <% elsif adoption.present? && adoption.status == "Pendente" %>
+                    <div class="position-absolute top-0 start-0 w-100 bg-warning text-white d-flex justify-content-center align-items-center p-2">Em processo de adoção</div>
                   <% end %>
                 <% end %>
               </div>
@@ -34,7 +36,7 @@
               <div class="icons d-flex">
                   <%= link_to "<i class=\"fa-solid fa-circle-info\"></i>".html_safe, animal_path(animal), class:"info" %>
 
-                  <% if current_user.adopter? && animal.adoptions.none? { |adoption| adoption.status == "Aceito" } %>
+                  <% if current_user.adopter? && animal.adoptions.none? { |adoption| adoption.status == "Aceito" || adoption.status == "Pendente" } %>
                     <% if current_user.bookmarks.exists?(animal_id: animal.id) %>
                       <% bookmark = current_user.bookmarks.find_by(animal_id: animal.id) %>
                       <%= button_to "<i class='fa-solid fa-heart red-heart'></i>".html_safe,
