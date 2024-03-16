@@ -6,7 +6,9 @@
       <div class="mb-1">
         <p class="navigation mb-1"><%= link_to "Home", "/", class:"navigation" %> / <%= link_to "Dashboard", dashboard_path, class:"navigation" %> / Perfil do Usuário</p>
       </div>
+
         <%= render 'users/show', adoption_form: @adoption_form %>
+ 
       </div>
 
       <% else %>
@@ -39,6 +41,7 @@
         </div>
       </div>
 
+
       <div class="row d-flex align-items-between mx-3 mt-5 mb-4">
         <%= simple_form_for @adoption_form do |f| %>
           <div class="name d-flex justify-content-between">
@@ -55,7 +58,7 @@
           </div>
           <div class="col-4 mr-3">
           <%= f.input :pergunta4, label: "Tem outros pets? ", collection: ['Sim', 'Não'], disabled: true %>
-          </div>
+         </div>
           </div>
           <%= f.input :pergunta5, label: "Quantas horas você passa em casa por dia?", collection: ['4', '4-8', '4-12', '+ 12'], disabled: true %>
           <%= f.input :pergunta6, label: "Quantas pessoas morando na residência? ", disabled: true%>
