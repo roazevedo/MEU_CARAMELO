@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # patch "users/:id", to: "users#update"
 
   get "matchs", to: "matchs#show"
+  get "match", to: "matchs#match"
 
   root to: "pages#home"
   get "dashboard", to: "pages#dashboard", as: :dashboard

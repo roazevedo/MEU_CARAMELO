@@ -99,9 +99,9 @@
         .icons {
             font-size: 25px;
             .edit {
-                color: #ffc800;
+                color: $caramel;
                  :hover {
-                    color: #f3be00;
+                    color: $dark-caramel;
                 }
             }
             .delete {
