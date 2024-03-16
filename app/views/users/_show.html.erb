@@ -1,24 +1,55 @@
 <div class="container">
    <% if user_signed_in? && @user.adopter? %> <%#se o usuário estiver logado e o user que ele clica for um adotante %>
 
-    <div class="d-flex mt-3">
+    <div class="d-flex w-100 mt-3 px-4">
       <% if @user.photo.attached? %>
         <%= cl_image_tag @user.photo.key, class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% else %>
         <%= image_tag "cat.jpg", class: "avatar-show", alt: "avatar photo", height: 200, width: 200 %>
       <% end %>
 
-      <div class="user-info ms-3">
-        <h1 class="second-title"><%= @user.first_name%> <%= @user.last_name %></h1>
+      <div class="user-info ms-4 w-100">
+        <div class="d-flex w-100">
+          <h1 class="second-title"><%= @user.first_name%> <%= @user.last_name %></h1>
+          <% if @user == current_user %>
+            <%= link_to 'Editar', edit_user_path(@user), class:"btn-dark-green btn-height ms-3 my-auto" %>
+          <% end %>
+        </div>
         <p class="mb-0"><i class="fa-solid fa-location-dot me-1"></i> <%= @user.city %>/<%= @user.state %></p>
         <p><i class="fa-solid fa-phone"></i> <%= @user.email %></p>
-      </div>
 
-      <div>
-      <%= render 'bookmarks/index' %>
+        <div class="d-flex mt-5">
+          <% adopted_animals = @user.adoptions.where(adoptions: { status: "Aceito" }) %>
+          <% count = adopted_animals.count %>
+          <h2 class="h2-info"><strong><%= count %></strong> animais adotados</h2>
+        </div>
       </div>
+    </div>
 
-      <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-dark-green btn-height ms-3 my-auto" %>
+    <div class="row d-flex align-items-between mx-3 mt-5 mb-4">
+      <%= simple_form_for adoption_form do |f| %>
+        <div class="name d-flex justify-content-between">
+        <div class="col-7 mr-3">
+        <%= f.input :pergunta1, label: "Tem criança na residência? ", collection: ['Sim', 'Não'] %>
+        </div>
+        <div class="col-4 mr-3">
+        <%= f.input :pregunta2, label: "Mora em? ", collection: ['Casa', 'Apartamento'] %>
+        </div>
+        </div>
+        <div class="name d-flex justify-content-between">
+        <div class="col-7 mr-3">
+        <%= f.input :pergunta3, label: "Espaço disponível na casa? ", collection: ['Pequeno', 'Medio', 'Grande'] %>
+        </div>
+        <div class="col-4 mr-3">
+        <%= f.input :pergunta4, label: "Tem outros pets? ", collection: ['Sim', 'Não'] %>
+        </div>
+        </div>
+        <%= f.input :pergunta5, label: "Quantas horas você passa em casa por dia?", collection: ['4', '4-8', '4-12', '+ 12'] %>
+        <%= f.input :pergunta6, label: "Quantas pessoas morando na residência? "%>
+        <%= f.input :pergunta7, label: "Ele ficará preso em algum cômodo?", collection: ['Sim', 'Não'] %>
+        <%= f.input :pergunta8, label: "Você aceita manter contato com a gente e mandar fotos e vídeos constantemente?", collection: ['Sim', 'Não'] %>
+        <%= f.button :submit, "Concluir", class:"btn btn-dark-green" %>
+      <% end %>
     </div>
 
   <% elsif user_signed_in? && @user.adopter? != true %> <%#se o usuário estiver logado e o user que ele clica for um doador %>

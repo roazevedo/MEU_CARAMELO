@@ -12,5 +12,6 @@ class PagesController < ApplicationController
     @animals = Animal.all
     @adoptions = Adoption.all
     @testimonies = Testimony.all
+    @adoption_form = @user.adoption_form || AdoptionForm.new
   end
 end

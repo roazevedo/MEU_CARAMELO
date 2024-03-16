@@ -34,15 +34,15 @@
 
             <div class="col-sm">
 
-              <div data-show-dashboard-target="profileElement" class="mt-0 mb-5 px-5 d-none">
-                  <%= render 'users/show' %>
+              <div data-show-dashboard-target="profileElement" class="mt-0 mb-5 px-5">
+                  <%= render 'users/show', adoption_form: @adoption_form %>
               </div>
 
               <div data-show-dashboard-target="adoptionElement" class="mt-0 mb-5 d-none">
                 <% if @adoptions %>
                   <%= render 'adoptions/my_applications' %>
                 <% else %>
-                  <h3>Você não tem nenhuma adoção.</h3>
+                  <p>Você não tem nenhuma adoção.</p>
                 <% end %>
               </div>
 

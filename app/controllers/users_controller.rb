@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @adoption = Adoption.find_by(user_id: @user.id)
+
+    @adoption_form = @user.adoption_form || AdoptionForm.new
   end
 
   def new
