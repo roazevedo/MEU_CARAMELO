@@ -214,3 +214,17 @@
 .btn-height {
     height: 40px;
 }
+
+.btn-simple {
+    background-color: #ffffff00;
+    color: $dark-green;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    &:hover {
+        color: #416125;
+    }
+}

@@ -1,8 +1,14 @@
 require 'csv'
 class AnimalsController < ApplicationController
   def index
+    if params[:search]
+      @animals = Animal.where(specie: params[:search])
+    else
+      @animals = Animal.all
+    end
+
     # if current_user && current_user.adopter?
-    @animals = Animal.all
+    # @animals = Animal.all
     # else
     # redirect_to new_animal_path
     # end
