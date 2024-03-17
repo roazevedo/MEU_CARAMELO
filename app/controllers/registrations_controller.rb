@@ -9,6 +9,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  # def sign_up_params
+  #   params.require(:user).permit(:email, :password, :password_confirmation, :photo)
+  # end
+
   def after_sign_up_path_for(resource)
     # Aqui você pode definir para onde o usuário será redirecionado após o registro
     # Por exemplo, você pode redirecioná-lo para a página de perfil do usuário:
