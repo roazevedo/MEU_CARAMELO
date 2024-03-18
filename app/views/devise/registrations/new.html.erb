@@ -22,7 +22,7 @@
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
 
-          <%= f.input :city, label: "Cidade", required: true, placeholder: 'Selecione o Estado' %>
+          <%= f.input :city, label: "Cidade", required: true, placeholder: 'Digite a Cidade' %>
           <%= f.input :state, label: 'Estado', as: :select, collection: @states, placeholder: 'Selecione o Estado', include_blank: true, class:"state ms-3", required: true, placeholder: 'São Paulo' %>
           <%= f.input :phone, label: "Telefone", placeholder: 'Digite o telefone com 9 dígitos', required: true %>
           <%= f.input :adopter, label: "Quero adotar", input_html: { data: { action: "change->tab#checkAdopter", target: "tab.adopter" } } %>
