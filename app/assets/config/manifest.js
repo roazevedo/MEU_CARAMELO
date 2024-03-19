@@ -5,3 +5,5 @@
 //= link popper.js
 //= link bootstrap.min.js
 //= link_directory ../images
+//= link application.css
+
