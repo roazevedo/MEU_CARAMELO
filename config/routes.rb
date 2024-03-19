@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 #  devise_for :users
 
   devise_for :users, controllers: { registrations: 'registrations' }
+  
   # post "users", to: "users#create"
 
    #get "users/:id", to: "users#show", as: :user

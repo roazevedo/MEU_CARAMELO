@@ -16,10 +16,15 @@
 
     <div class="page-container">
       <div id="content-wrap">
-        <%= render "shared/navbar" %>
+        <% unless @hide_nav_footer %>
+          <%= render 'shared/navbar' %>
+        <% end %>
         <%= yield %>
       </div>
-      <%= render "shared/footer" %>
+
+      <% unless @hide_nav_footer %>
+        <%= render 'shared/footer' %>
+      <% end %>
     </div>
 
     <%= render "shared/flashes" %>

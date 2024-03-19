@@ -18,6 +18,7 @@ class MatchsController < ApplicationController
     @user = User.find_by(id: current_user)
     @animals = Animal.includes(:adoptions).where(adoptions: { animal_id: nil })
     @matches = []
+    @hide_nav_footer = true
 
     @animals.each do |animal|
       match_data = match(@user,  animal)
