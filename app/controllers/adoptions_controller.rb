@@ -1,7 +1,7 @@
 class AdoptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_adoption, only: [:show, :edit, :update, :done, :update_status, :done]
-  before_action :set_animal, only: [:index, :new, :create,:show]
+  before_action :set_animal, only: [ :new, :create,:show]
 
   def my_applications
     @adoption = Adoption.where('user_id = ? AND animal_id IN (?)', current_user.id, current_user.animals.pluck(:id))
@@ -20,6 +20,13 @@ class AdoptionsController < ApplicationController
 
     # Combine a adoção do adopter e do owner em uma única coleção
     @adoptions = @adopter_adoptions.or(@owner_adoptions)
+
+
+    #match no show de adoption
+    @match_data = match(@adoption.user,  @animal)
+      # if match_data && match_data[:score] > 0
+      #   @matches << { animal: animal, match_data: match_data }
+      # end
   end
 
   def new
@@ -80,7 +87,25 @@ class AdoptionsController < ApplicationController
     end
   end
 
+
   private
+
+  def match(user,  animal)
+
+    if user.specie == animal.specie
+      match_data = {
+        size_match: user.size == animal.size,
+        specie_match: user.specie == animal.specie,
+        gender_match: user.gender == animal.gender,
+        age_match: user.age == animal.age,
+        vaccination_match: user.vaccination == animal.vaccination,
+        neutered_match: user.neutered == animal.neutered
+      }
+      match_data[:score] = match_data.values.count(true)
+    end
+    match_data
+
+  end
 
   def adoption_params
     params.require(:adoption).permit(:user_id, :animal_id, :date, :status, :done)

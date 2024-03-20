@@ -21,7 +21,17 @@
       </div>
 
       <div class="animal-info py-4 px-5 d-flex flex-column justify-content-between">
-        <h2 class="title"><%= "#{@adoption.animal.name}" %></h2>
+
+        <div class="score d-flex justify-content-between">
+          <h2 class="title"><%= "#{@adoption.animal.name}" %></h2>
+
+          <div class="col-3 mb-6 my-auto ">
+            <% if @match_data %>
+              <div role="progressbar2" aria-valuenow="<%= (@match_data[:score].to_f / 6 * 100).round(0) %>" aria-valuemin="0" aria-valuemax="100" style="--value: <%= (@match_data[:score].to_f / 6 * 100).round(0) %>" class="my-auto mx-auto"></div>
+            <% end %>
+          </div>
+        </div>
+
         <p><strong><%= "Interessado(a): " %></strong><%= "#{@adoption.user.first_name} #{@adoption.user.last_name}" %></p>
         <p><strong><%= "E-mail de #{@adoption.user.first_name}: " %></strong><%= "#{@adoption.user.email}" %></p>
         <p><strong><%= "Tutor(a): " %></strong><%= "#{@adoption.animal.user.first_name} #{@adoption.animal.user.last_name}" %></p>
