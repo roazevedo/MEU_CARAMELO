@@ -10,9 +10,9 @@ class BookmarksController < ApplicationController
     @bookmark = current_user.bookmarks.build(bookmark_params)
     if @bookmark.save
       if params[:from_page] == "matchs"
-        redirect_to matchs_path, notice: "Animal favoritado com sucesso!"
-      elsif @bookmark.animal.present?
-        redirect_to user_path(@bookmark.animal.user), notice: "Animal favoritado com sucesso!"
+      #   redirect_to matchs_path, notice: "Animal favoritado com sucesso!"
+      # elsif @bookmark.animal.present?
+      #   redirect_to user_path(@bookmark.animal.user), notice: "Animal favoritado com sucesso!"
       else
         redirect_to animals_path, notice: "Animal favoritado com sucesso!"
       end
@@ -28,8 +28,8 @@ class BookmarksController < ApplicationController
         redirect_to matchs_path, notice: "Animal removido dos favoritos com sucesso!"
       elsif params[:from_page] == "dashboard"
         redirect_to dashboard_path, notice: "Animal removido dos favoritos com sucesso!"
-      elsif @bookmark.animal.present?
-        redirect_to user_path(@bookmark.animal.user), notice: "Animal removido dos favoritos com sucesso!"
+      # elsif @bookmark.animal.present?
+      #   redirect_to user_path(@bookmark.animal.user), notice: "Animal removido dos favoritos com sucesso!"
       else
         redirect_to animals_path, notice: "Animal removido dos favoritos com sucesso!"
       end
